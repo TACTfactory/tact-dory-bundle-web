@@ -14,7 +14,7 @@
 	],
 	"autoload" : {
 		"psr-4" : {
-			"TactCore\\DoryBundle\\" : ""
+			"Tact\\DoryBundle\\" : ""
 		},
 		"classmap" : [
 			"AppKernel.php"

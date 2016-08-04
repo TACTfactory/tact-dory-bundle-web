@@ -17,23 +17,10 @@ use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Buzz\Exception\InvalidArgumentException;
 use Tact\DoryBundle\DataFixtures\ORM\Base\MainAbstractFixture;
+use Tact\DoryBundle\Enum\DatabaseTypes;
 
 class LoadSessionData extends MainAbstractFixture implements OrderedFixtureInterface
 {
-
-    /**
-     * Postgres sgbd alias.
-     *
-     * @var string
-     */
-    const POSTGRES_ALIAS = 'pgsql';
-
-    /**
-     * Mysql sgbd alias.
-     *
-     * @var string
-     */
-    const MYSQL_ALIAS = 'mysql';
 
     /**
      * Flag of error to print in case of wrong sgbd alias.
@@ -63,13 +50,13 @@ class LoadSessionData extends MainAbstractFixture implements OrderedFixtureInter
      *
      */
     public function load(ObjectManager $manager) {
-        $sgbd = $this->container->getParameter('sgbd_name');
+        $sgbd = $this->container->getParameter('database_type');
 
         switch ($sgbd) {
-            case self::POSTGRES_ALIAS:
+            case DatabaseTypes::POSTGRES:
                 $query = $this->session_shema_postgresql;
                 break;
-            case self::MYSQL_ALIAS:
+            case DatabaseTypes::MYSQL:
                 $query = $this->session_shema_mysql;
                 break;
             default:
