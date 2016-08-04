@@ -1,0 +1,102 @@
+# To get started with security, check out the documentation:
+# http://symfony.com/doc/current/book/security.html
+security:
+
+    encoders:
+        FOS\UserBundle\Model\UserInterface: sha512
+
+    role_hierarchy:
+        ROLE_ADMIN:       [ROLE_USER, ROLE_SONATA_ADMIN, ROLE_API]
+        ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_SONATA_ADMIN, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH, ROLE_API]
+        SONATA:
+            - ROLE_SONATA_PAGE_ADMIN_PAGE_EDIT
+
+    acl:
+        connection: default
+
+    # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
+    providers:
+        # in_memory:
+        #     memory: ~
+        fos_userbundle:
+            id: fos_user.user_provider.username_email
+        default_provider:
+            chain:
+                providers:          [ fos_userbundle ]
+
+    firewalls:
+        # disables authentication for assets and the profiler, adapt it according to your needs
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        admin:
+            pattern:            ^/admin(.*)
+            context:            user
+            form_login:
+                provider:       fos_userbundle
+                login_path:     /login
+                use_forward:    false
+                check_path:     /admin/login_check
+                failure_path:   null
+                use_referer:    true
+            logout:
+                path:           /admin/logout
+            anonymous:          false
+
+        log:
+            pattern:            ^/login(.*)
+            context:             user
+            form_login:
+                provider:       default_provider
+                csrf_provider:  form.csrf_provider
+            logout:             true
+            anonymous:          true
+
+        main:
+            pattern:            ^/(.*)
+            context:             user
+            form_login:
+                login_path:     /login
+                use_forward:    false
+                check_path:     /login_check
+                failure_path:   null
+                use_referer:    true
+            logout:             true
+            anonymous:          true
+            remember_me:
+                secret:   '%secret%'
+                lifetime: 604800 # 1 week in seconds
+                path:     /
+                # by default, the feature is enabled by checking a
+                # checkbox in the login form (see below), uncomment the
+                # following line to always enable it.
+                #always_remember_me: true
+            # activate different ways to authenticate
+
+            # http_basic: ~
+            # http://symfony.com/doc/current/book/security.html#a-configuring-how-your-users-will-authenticate
+
+            # form_login: ~
+            # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
+
+        rest_api:
+            pattern:            ^/api/(.*)
+            stateless:          true
+            http_basic:
+                provider:       default_provider
+
+    access_control:
+        - { path: ^/_wdt, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/_profiler, role: IS_AUTHENTICATED_ANONYMOUSLY }
+
+        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+
+        - { path: ^/admin, role: ROLE_ADMIN }
+        - { path: ^/api/*, role: ROLE_API }
+
+        - { path: ^/(.+), roles: IS_AUTHENTICATED_ANONYMOUSLY }
+#        - { path: ^/$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+

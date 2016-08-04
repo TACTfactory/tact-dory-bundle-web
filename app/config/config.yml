@@ -1,0 +1,2 @@
+imports:
+    - { resource: ../../src/TactCore/DoryBundle/Resources/config/config.yml }

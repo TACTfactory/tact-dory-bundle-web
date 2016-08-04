@@ -1,0 +1,51 @@
+knp_gaufrette:
+    stream_wrapper: ~
+
+    adapters:
+        user_adapter:
+            local:
+                directory: "%kernel.root_dir%/../web/uploads/users"
+                create:     true
+
+    filesystems:
+        user_image_fs:
+            adapter:    user_adapter
+
+vich_uploader:
+    db_driver: orm # or mongodb or propel or phpcr
+    storage:   gaufrette
+
+    mappings:
+        user_image:
+            uri_prefix:         /uploads/users
+            upload_destination: user_image_fs
+            inject_on_load:     false
+            delete_on_update:   true
+            delete_on_remove:   true
+            namer:              vich_uploader.namer_origname
+
+liip_imagine:
+    driver: imagick
+    filter_sets:
+
+        # used in admin and in listings
+        teaser:
+            quality: 90
+            filters:
+                upscale: { min: [320, 320] }
+                thumbnail: { size: [320, 320] }
+                format: ['jpg']
+
+        # main image - not over full size
+        detail:
+            quality: 90
+            filters:
+                relative_resize: { widen: 1000 }
+                format: ['jpg']
+
+        # full size
+        big:
+            quality: 90
+            filters:
+                relative_resize: { widen: 1600 }
+                format: ['jpg']
