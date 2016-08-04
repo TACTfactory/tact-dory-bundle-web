@@ -10,7 +10,7 @@
  * Last update : Jun 02, 2015
  *
  **************************************************************************/
-namespace TactCore\DoryBundle\Entity\Base;
+namespace Tact\DoryBundle\Entity\Base;
 
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as JSON;

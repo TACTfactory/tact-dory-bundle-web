@@ -11,12 +11,12 @@
  * Last update : Jan 25, 2016
  *
  **************************************************************************/
-namespace TactCore\DoryBundle\DataFixtures\ORM;
+namespace Tact\DoryBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Buzz\Exception\InvalidArgumentException;
-use TactCore\DoryBundle\DataFixtures\ORM\Base\MainAbstractFixture;
+use Tact\DoryBundle\DataFixtures\ORM\Base\MainAbstractFixture;
 
 class LoadSessionData extends MainAbstractFixture implements OrderedFixtureInterface
 {

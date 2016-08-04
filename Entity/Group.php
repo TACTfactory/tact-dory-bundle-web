@@ -1,6 +1,6 @@
 <?php
 /**************************************************************************
- * Group.php, TactCore Dory.
+ * Group.php, Tact Dory.
  *
  * Mickael Gaillard Copyright 2016
  * Description :
@@ -10,7 +10,7 @@
  * Last update : Jan 25, 2016
  *
  **************************************************************************/
-namespace TactCore\DoryBundle\Entity;
+namespace Tact\DoryBundle\Entity;
 
 use Sonata\UserBundle\Entity\BaseGroup as BaseGroup;
 use Doctrine\ORM\Mapping as ORM;

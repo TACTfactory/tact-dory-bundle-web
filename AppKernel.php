@@ -55,7 +55,7 @@ class AppKernel extends Kernel
             //new Bazinga\Bundle\GeocoderBundle\BazingaGeocoderBundle(), // Geocoder
 
             // Local Section
-            new TactCore\DoryBundle\TactCoreDoryBundle()
+            new Tact\DoryBundle\TactDoryBundle()
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'), true)) {

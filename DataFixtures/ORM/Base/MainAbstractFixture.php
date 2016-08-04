@@ -12,7 +12,7 @@
  *
  **************************************************************************/
 
-namespace TactCore\DoryBundle\DataFixtures\ORM\Base;
+namespace Tact\DoryBundle\DataFixtures\ORM\Base;
 
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;

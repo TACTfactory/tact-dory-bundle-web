@@ -1,7 +1,7 @@
 <?php
 
 /**************************************************************************
- * TactCoreDoryBundle.php, Tact Dory.
+ * TactDoryBundle.php, Tact Dory.
  *
  * Mickael Gaillard Copyright 2016
  * Description :
@@ -10,11 +10,11 @@
  * Last update : 3 août 2016
  *
  **************************************************************************/
-namespace TactCore\DoryBundle;
+namespace Tact\DoryBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-class TactCoreDoryBundle extends Bundle
+class TactDoryBundle extends Bundle
 {
 
     /**

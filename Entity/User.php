@@ -11,7 +11,7 @@
  * Last update : Jan 25, 2016
  *
  **************************************************************************/
-namespace TactCore\DoryBundle\Entity;
+namespace Tact\DoryBundle\Entity;
 
 use Sonata\UserBundle\Entity\BaseUser as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
@@ -48,7 +48,7 @@ class User extends BaseUser
     protected $id;
 
     /**
-    * @ORM\ManyToMany(targetEntity="TactCore\DoryBundle\Entity\Group")
+    * @ORM\ManyToMany(targetEntity="Tact\DoryBundle\Entity\Group")
     * @ORM\JoinTable(name="sys_group_user",
     *   joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
     *   inverseJoinColumns={@ORM\JoinColumn(name="group_id", referencedColumnName="id")}

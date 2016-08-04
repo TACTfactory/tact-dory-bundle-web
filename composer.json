@@ -14,11 +14,10 @@
 	],
 	"autoload" : {
 		"psr-4" : {
-			"TactCore\\DoryBundle\\" : "src/TactCore/DoryBundle/"
+			"TactCore\\DoryBundle\\" : ""
 		},
 		"classmap" : [
-			"app/AppKernel.php",
-			"app/AppCache.php"
+			"AppKernel.php"
 		]
 	},
 	"require" : {
@@ -87,14 +86,8 @@
 		}
 	},
 	"extra" : {
-		"symfony-app-dir" : "app",
-		"symfony-web-dir" : "web",
-		"symfony-assets-install" : "relative",
-		"incenteev-parameters" : {
-			"file" : "app/config/parameters.yml"
-		},
 		"branch-alias" : {
-			"dev-master" : "2.8-dev"
+			"dev-master" : "0.1-dev"
 		}
 	},
 	"minimum-stability" : "dev",

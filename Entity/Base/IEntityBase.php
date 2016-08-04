@@ -10,7 +10,7 @@
  * Last update : 22 avr. 2016
  *
  **************************************************************************/
-namespace TactCore\DoryBundle\Entity\Base;
+namespace Tact\DoryBundle\Entity\Base;
 
 /**
  * IEntityBase.

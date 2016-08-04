@@ -10,11 +10,11 @@
  * Last update : 9 mai 2016
  *
  **************************************************************************/
-namespace TactCore\DoryBundle\DataFixtures\ORM\Base;
+namespace Tact\DoryBundle\DataFixtures\ORM\Base;
 
-use TactCore\DoryBundle\DataFixtures\ORM\Base\MainAbstractFixture;
+use Tact\DoryBundle\DataFixtures\ORM\Base\MainAbstractFixture;
 use Doctrine\Common\Persistence\ObjectManager;
-use TactCore\DoryBundle\Entity\Base\IEntityBase;
+use Tact\DoryBundle\Entity\Base\IEntityBase;
 
 /**
  * AbstractOrdererFixture.

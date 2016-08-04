@@ -11,11 +11,11 @@
  * Last update : Jan 25, 2016
  *
  **************************************************************************/
-namespace TactCore\DoryBundle\DataFixtures\ORM;
+namespace Tact\DoryBundle\DataFixtures\ORM;
 
 use Doctrine\Common\Persistence\ObjectManager;
-use TactCore\DoryBundle\Entity\User;
-use TactCore\DoryBundle\DataFixtures\ORM\Base\AbstractOrdererFixture;
+use Tact\DoryBundle\Entity\User;
+use Tact\DoryBundle\DataFixtures\ORM\Base\AbstractOrdererFixture;
 use FOS\UserBundle\Doctrine\UserManager;
 
 class LoadUserData extends AbstractOrdererFixture
@@ -39,7 +39,7 @@ class LoadUserData extends AbstractOrdererFixture
      *
      * {@inheritdoc}
      *
-     * @see \TactCore\DoryBundle\DataFixtures\ORM\Base\AbstractOrdererFixture::generateMinimumFixtures()
+     * @see \Tact\DoryBundle\DataFixtures\ORM\Base\AbstractOrdererFixture::generateMinimumFixtures()
      */
     protected function generateMinimumFixtures(ObjectManager $manager) {
         $result = [];
@@ -65,7 +65,7 @@ class LoadUserData extends AbstractOrdererFixture
      *
      * {@inheritdoc}
      *
-     * @see \TactCore\DoryBundle\DataFixtures\ORM\Base\AbstractOrdererFixture::generateTestFixtures()
+     * @see \Tact\DoryBundle\DataFixtures\ORM\Base\AbstractOrdererFixture::generateTestFixtures()
      */
     protected function generateTestFixtures(ObjectManager $manager) {
         $result = [];
@@ -112,7 +112,7 @@ class LoadUserData extends AbstractOrdererFixture
      * @param string $phone
      * @param string $ref
      *
-     * @return \TactCore\DoryBundle\Entity\User
+     * @return \Tact\DoryBundle\Entity\User
      */
     protected function makeUser($username, $enable, $password, $firstname, $lastname, $roles, $email, $birthday,
             $website, $gender, $locale, $timeZone, $phone, $ref = null) {
