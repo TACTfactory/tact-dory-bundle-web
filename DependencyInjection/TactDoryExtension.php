@@ -12,6 +12,7 @@
  **************************************************************************/
 namespace Tact\DoryBundle\DependencyInjection;
 
+use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
@@ -22,8 +23,20 @@ use Symfony\Component\DependencyInjection\Loader;
  *
  * @link http://symfony.com/doc/current/cookbook/bundles/extension.html
  */
-class TactDoryExtension extends Extension
+class TactDoryExtension extends Extension implements PrependExtensionInterface
 {
+
+    /**
+     *
+     * {@inheritdoc}
+     *
+     */
+    public function prepend(ContainerBuilder $container) {
+        $bundles = $container->getParameter('kernel.bundles');
+
+        $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
+        $loader->load('config.yml');
+    }
 
     /**
      *

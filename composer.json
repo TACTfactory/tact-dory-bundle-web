@@ -2,23 +2,21 @@
 	"name" : "tactfactory/dory-bundle",
 	"type" : "symfony-bundle",
 	"description" : "TACTfactory Project DRY",
-	"authors": [{
-	    "name": "Jonathan Poncy",
-	    "email": "poncy.jonathan@gmail.com"
-	}, {
-	    "name": "Mickael Gaillard",
-	    "email": "mickael.gaillard@tactfactory.com"
-	}],
-	"keywords": [
-	    "DRY"
+	"authors" : [{
+			"name" : "Jonathan Poncy",
+			"email" : "poncy.jonathan@gmail.com"
+		}, {
+			"name" : "Mickael Gaillard",
+			"email" : "mickael.gaillard@tactfactory.com"
+		}
+	],
+	"keywords" : [
+		"DRY"
 	],
 	"autoload" : {
 		"psr-4" : {
 			"Tact\\DoryBundle\\" : ""
-		},
-		"classmap" : [
-			"AppKernel.php"
-		]
+		}
 	},
 	"require" : {
 		"php" : "^5.3 || ^7.0",
