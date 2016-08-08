@@ -23,4 +23,3 @@ fos_user:
 #            type:               sonata_user_resetting
 #            name:               sonata_user_resetting_form
 #            validation_groups:  [ResetPassword, Default]
-

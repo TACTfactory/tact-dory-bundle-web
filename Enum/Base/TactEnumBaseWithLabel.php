@@ -1,13 +1,13 @@
 <?php
 
 /**************************************************************************
- * TactEnumBaseWithLabel.php, Sep Conseil
+ * TactEnumBaseWithLabel.php, TACT Dory
  *
  * Mickael Gaillard Copyright 2015
  * Description :
  * Author(s)   : Jonathan Poncy <jonathan.poncy@tactfactory.com>
  * Licence     : All right reserved.
- * Last update : 9 déc. 2015
+ * Last update : 5 août 2016
  *
  **************************************************************************/
 namespace Tact\DoryBundle\Enum\Base;

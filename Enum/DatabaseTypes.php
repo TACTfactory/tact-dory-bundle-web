@@ -1,7 +1,7 @@
 <?php
 
 /**************************************************************************
- * DatabaseTypes.php, Sep Conseil
+ * DatabaseTypes.php, TACT Dory
  *
  * Mickael Gaillard Copyright 2016
  * Description :

@@ -1,7 +1,7 @@
 <?php
 
 /**************************************************************************
- * KernelImporter.php, Sep Conseil
+ * KernelImporter.php, TACT Dory
  *
  * Mickael Gaillard Copyright 2016
  * Description :

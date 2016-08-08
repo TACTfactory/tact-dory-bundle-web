@@ -7,8 +7,8 @@ sonata_user:
         group: Tact\CmdbBundle\Entity\Group
     #admin:
     #    user:
-    #        class:      Alfred\CoreBundle\Admin\UserAdmin
-    #        controller: AlfredCoreBundle:UserAdmin
+    #        class:      TactDory\CoreBundle\Admin\UserAdmin
+    #        controller: TactDoryCoreBundle:UserAdmin
     profile:  # Profile Form (firstname, lastname, etc ...)
         form:
             type:               sonata_user_profile

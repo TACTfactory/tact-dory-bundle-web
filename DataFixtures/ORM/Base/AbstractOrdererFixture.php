@@ -1,13 +1,13 @@
 <?php
 
 /**************************************************************************
- * AbstractOrdererFixture.php, Sep Conseil
+ * AbstractOrdererFixture.php, TACT Dory
  *
  * Mickael Gaillard Copyright 2016
  * Description :
  * Author(s)   : Jonathan Poncy <jonathan.poncy@tactfactory.com>
  * Licence     : All right reserved.
- * Last update : 9 mai 2016
+ * Last update : 5 août 2016
  *
  **************************************************************************/
 namespace Tact\DoryBundle\DataFixtures\ORM\Base;

@@ -10,13 +10,13 @@ rms_push_notifications:
           use_multi_curl: false  # <boolean_android_gcm_use_multi_curl> default is true
 #  ios:
 #      sandbox: true             # <bool_use_apns_sandbox>
-#      pem: "%kernel.root_dir%/../alfred.pem"          # <path_apns_certificate> # can be absolute or relative path (from app directory)
-#      passphrase: "alfred_pass"   # <string_apns_certificate_passphrase>
+#      pem: "%kernel.root_dir%/../tact-dory.pem"          # <path_apns_certificate> # can be absolute or relative path (from app directory)
+#      passphrase: "tact_dory_pass"   # <string_apns_certificate_passphrase>
 #  mac:
 #      sandbox: false            # <bool_use_apns_sandbox>
-#      pem: "%kernel.root_dir%/../alfred.pem"          # <path_apns_certificate>
-#      passphrase: "alfred_pass"   # <string_apns_certificate_passphrase>
+#      pem: "%kernel.root_dir%/../tact-dory.pem"          # <path_apns_certificate>
+#      passphrase: "tact_dory_pass"   # <string_apns_certificate_passphrase>
 #  blackberry:
 #      evaluation: true          # <bool_bb_evaluation_mode>
-#      app_id: "alfred_app"        # <string_bb_app_id>
-#      password: "alfred_pass"     # <string_bb_password>
+#      app_id: "tact_dory_app"        # <string_bb_app_id>
+#      password: "tact_dory_pass"     # <string_bb_password>

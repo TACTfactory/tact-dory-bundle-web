@@ -1,13 +1,13 @@
 <?php
 
 /**************************************************************************
- * ITactEnum.php, Sep Conseil
+ * ITactEnum.php, TACT Dory
  *
  * Mickael Gaillard Copyright 2016
  * Description :
  * Author(s)   : Jonathan Poncy <jonathan.poncy@tactfactory.com>
  * Licence     : All right reserved.
- * Last update : 7 janv. 2016
+ * Last update : 5 août 2016
  *
  **************************************************************************/
 namespace Tact\DoryBundle\Enum\Base;

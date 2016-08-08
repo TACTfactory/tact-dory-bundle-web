@@ -99,4 +99,3 @@ security:
 
         - { path: ^/(.+), roles: IS_AUTHENTICATED_ANONYMOUSLY }
 #        - { path: ^/$, role: IS_AUTHENTICATED_ANONYMOUSLY }
-

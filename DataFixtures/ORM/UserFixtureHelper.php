@@ -8,7 +8,7 @@
  * Author(s) : Mickael Gaillard <mickael.gaillard@tactfactory.com>
  *             Jonathan Poncy <jonathan.poncy@tactfactory.com>
  * Licence : All right reserved.
- * Last update : Jan 25, 2016
+ * Last update : 5 août 2016
  *
  **************************************************************************/
 namespace Tact\DoryBundle\DataFixtures\ORM;
@@ -76,7 +76,7 @@ abstract class UserFixtureHelper extends AbstractOrdererFixture
                     User::ROLE_DEFAULT,
                     User::ROLE_API,
                     User::ROLE_SUPER_ADMIN
-                ), "admin@alfred.com", new \DateTime('2014-01-01'), 'http://www.tactfactory.com', User::GENDER_UNKNOWN,
+                ), "admin@tact-dory.com", new \DateTime('2014-01-01'), 'http://www.tactfactory.com', User::GENDER_UNKNOWN,
                 'fr_FR', 'Europe/Paris', '+33100000000', 'user_admin');
 
         return $result;

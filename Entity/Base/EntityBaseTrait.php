@@ -1,13 +1,13 @@
 <?php
 
 /**************************************************************************
- * EntityBaseTrait.php, Sep Conseil
+ * EntityBaseTrait.php, TACT Dory
  *
  * Mickael Gaillard Copyright 2016
  * Description :
  * Author(s)   : Jonathan Poncy <jonathan.poncy@tactfactory.com>
  * Licence     : All right reserved.
- * Last update : 22 avr. 2016
+ * Last update : 5 août 2016
  *
  **************************************************************************/
 namespace Tact\DoryBundle\Entity\Base;

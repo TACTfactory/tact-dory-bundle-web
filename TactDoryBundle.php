@@ -1,7 +1,7 @@
 <?php
 
 /**************************************************************************
- * TactDoryBundle.php, Tact Dory.
+ * TactDoryBundle.php, TACT Dory.
  *
  * Mickael Gaillard Copyright 2016
  * Description :

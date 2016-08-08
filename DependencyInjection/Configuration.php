@@ -1,7 +1,7 @@
 <?php
 
 /**************************************************************************
- * Configuration.php, Tact Dory.
+ * Configuration.php, TACT Dory.
  *
  * Mickael Gaillard Copyright 2016
  * Description :
@@ -31,10 +31,6 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder() {
         $treeBuilder = new TreeBuilder();
         $treeBuilder->root('tact_dory');
-
-        // Here you should define the parameters that are allowed to
-        // configure your bundle. See the documentation linked above for
-        // more information on that topic.
 
         return $treeBuilder;
     }
