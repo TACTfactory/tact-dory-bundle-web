@@ -7,7 +7,7 @@
  * Description :
  * Author(s)   : Jonathan Poncy <jonathan.poncy@tactfactory.com>
  * Licence     : All right reserved.
- * Last update : 4 août 2016
+ * Last update : 4 august 2016
  *
  **************************************************************************/
 namespace Tact\DoryBundle\Enum;

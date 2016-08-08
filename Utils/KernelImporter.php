@@ -7,7 +7,7 @@
  * Description :
  * Author(s)   : Jonathan Poncy <jonathan.poncy@tactfactory.com>
  * Licence     : All right reserved.
- * Last update : 5 août 2016
+ * Last update : 5 august 2016
  *
  **************************************************************************/
 namespace Tact\DoryBundle\Utils;
@@ -82,11 +82,7 @@ abstract class KernelImporter
             new TactDoryBundle()
         ];
 
-        if (in_array($environment,
-                array(
-                    self::KERNEL_ENVIRONMENT_TEST,
-                    self::KERNEL_ENVIRONMENT_DEV
-                ), true)) {
+        if ($environment != self::KERNEL_ENVIRONMENT_PROD) {
             $bundles = array_merge($bundles,
                     [
                         new \Symfony\Bundle\DebugBundle\DebugBundle(),

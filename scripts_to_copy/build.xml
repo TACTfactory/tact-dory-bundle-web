@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+####################################################################################################################
+# TACTfactory Copyright 2015
+# Mickael Gaillard <mickael.gaillard@tactfactory.com>
+# Ver 1.1.0
+# Update Oct 7, 2015
+####################################################################################################################
+-->
+
+<project name="TACT Dory" basedir="." default="...">
+    <property name="dorydir" value="${basedir}/vendor/tactfactory/dory-bundle"/>
+    <include file="${dorydir}/build.xml"/>
+</project>
+
+<project name="local project" default="build">
+</project>

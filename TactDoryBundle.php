@@ -7,7 +7,7 @@
  * Description :
  * Author(s)   : Jonathan Poncy <jonathan.poncy@tactfactory.com>
  * Licence     : All right reserved.
- * Last update : 3 août 2016
+ * Last update : 3 august 2016
  *
  **************************************************************************/
 namespace Tact\DoryBundle;
@@ -16,11 +16,6 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 class TactDoryBundle extends Bundle
 {
-    // public function build(ContainerBuilder $container)
-    // {
-    // parent::build($container);
-    // // $container->addCompilerPass(new );
-    // }
 
     /**
      * (non-PHPdoc)

@@ -15,7 +15,8 @@
 	],
 	"autoload" : {
 		"psr-4" : {
-			"Tact\\DoryBundle\\" : ""
+			"Tact\\DoryBundle\\" : "",
+			"Tact\\DoryBundle\\Composer\\" : ""
 		}
 	},
 	"require" : {
@@ -66,7 +67,8 @@
 			"Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
 			"Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
 			"Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
-			"Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget"
+			"Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget",
+			"Tact\\Bundle\\DoryBundle\\script\\ScriptHandler::install"
 		],
 		"post-update-cmd" : [
 			"Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
@@ -74,7 +76,8 @@
 			"Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
 			"Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
 			"Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
-			"Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget"
+			"Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget",
+			"Tact\\Bundle\\DoryBundle\\script\\ScriptHandler::install"
 		]
 	},
 	"config" : {
