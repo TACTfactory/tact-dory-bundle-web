@@ -23,9 +23,10 @@ use Symfony\Component\Security\Core\Util\SecureRandom;
 
 /**
  * User
- * @ORM\Table(name="sys_user")
- * @ORM\Entity
+ *
+ * @ORM\MappedSuperclass()
  * @ORM\HasLifecycleCallbacks()
+ *
  * @JSON\ExclusionPolicy("ALL")
  */
 class User extends BaseUser
@@ -48,14 +49,16 @@ class User extends BaseUser
     protected $id;
 
     /**
-    * @ORM\ManyToMany(targetEntity="Tact\DoryBundle\Entity\Group")
-    * @ORM\JoinTable(name="sys_group_user",
-    *   joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
-    *   inverseJoinColumns={@ORM\JoinColumn(name="group_id", referencedColumnName="id")}
-    * )
-    *
-    * @var \Doctrine\Common\Collections\Collection
-    */
+     * ManyToMany mapping here only for information. You must have to override this one if you use user system.
+     *
+     * @ORM\ManyToMany(targetEntity="Tact\DoryBundle\Entity\Group")
+     * @ORM\JoinTable(name="sys_group_user",
+     * joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
+     * inverseJoinColumns={@ORM\JoinColumn(name="group_id", referencedColumnName="id")}
+     * )
+     *
+     * @var \Doctrine\Common\Collections\Collection
+     */
     protected $groups;
 
     /**
@@ -71,22 +74,21 @@ class User extends BaseUser
     protected $profilePicturePath;
 
     // for temporary storage
-    private $tempProfilePicturePath;
+    protected $tempProfilePicturePath;
 
     /**
      * Constructor
      */
-    public function __construct()
-    {
+    public function __construct() {
         parent::__construct();
     }
 
     /**
      * Display string of object
+     *
      * @return string
      */
-    public function __toString()
-    {
+    public function __toString() {
         try {
             $name = $this->getFullname();
         } catch (Exception $ex) {
@@ -99,8 +101,7 @@ class User extends BaseUser
      * Hook on pre-persist operations
      * @ORM\PrePersist
      */
-    public function prePersist()
-    {
+    public function prePersist() {
         parent::prePersist();
 
         // Static
@@ -109,7 +110,7 @@ class User extends BaseUser
         $this->setLocale('fr_FR');
         $this->setTimezone('Europe/Paris');
 
-        if (!$this->getUsername()) {
+        if (! $this->getUsername()) {
             $this->setUsername($this->getEmail());
         }
 
@@ -120,7 +121,7 @@ class User extends BaseUser
             ));
         }
 
-        if (!$this->getDateOfBirth()) {
+        if (! $this->getDateOfBirth()) {
             $this->setDateOfBirth(new \DateTime('1901-12-13 00:00:00.000000'));
         }
     }
@@ -130,13 +131,11 @@ class User extends BaseUser
      *
      * @return integer
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
-    public function isGranted($role)
-    {
+    public function isGranted($role) {
         return in_array($role, $this->getRoles());
     }
 
@@ -167,7 +166,6 @@ class User extends BaseUser
      * @return UploadedFile
      */
     public function getProfilePictureFile() {
-
         return $this->profilePictureFile;
     }
 
@@ -177,8 +175,7 @@ class User extends BaseUser
      * @param string $profilePicturePath
      * @return User
      */
-    public function setProfilePicturePath($profilePicturePath)
-    {
+    public function setProfilePicturePath($profilePicturePath) {
         $this->profilePicturePath = $profilePicturePath;
 
         return $this;
@@ -189,8 +186,7 @@ class User extends BaseUser
      *
      * @return string
      */
-    public function getProfilePicturePath()
-    {
+    public function getProfilePicturePath() {
         return $this->profilePicturePath;
     }
 
@@ -198,9 +194,7 @@ class User extends BaseUser
      * Get the absolute path of the profilePicturePath
      */
     public function getProfilePictureAbsolutePath() {
-        return null === $this->profilePicturePath
-        ? null
-        : $this->getUploadRootDir().'/'.$this->profilePicturePath;
+        return null === $this->profilePicturePath ? null : $this->getUploadRootDir() . '/' . $this->profilePicturePath;
     }
 
     /**
@@ -208,10 +202,10 @@ class User extends BaseUser
      *
      * @return string
      */
-    protected function getUploadRootDir($type='profilePicture') {
+    protected function getUploadRootDir($type = 'profilePicture') {
         // the absolute directory path where uploaded
         // documents should be saved
-        return __DIR__.'/../../../../web/'.$this->getUploadDir($type);
+        return __DIR__ . '/../../../../web/' . $this->getUploadDir($type);
     }
 
     /**
@@ -219,7 +213,7 @@ class User extends BaseUser
      *
      * @return string
      */
-    protected function getUploadDir($type='profilePicture') {
+    protected function getUploadDir($type = 'profilePicture') {
         // the type param is to change these methods at a later date for more file uploads
         // get rid of the __DIR__ so it doesn't screw up
         // when displaying uploaded doc/image in the view.
@@ -232,8 +226,7 @@ class User extends BaseUser
      * @return string
      */
     public function getWebProfilePicturePath() {
-
-        return '/'.$this->getUploadDir().'/'.$this->getProfilePicturePath();
+        return '/' . $this->getUploadDir() . '/' . $this->getProfilePicturePath();
     }
 
     /**
@@ -245,7 +238,8 @@ class User extends BaseUser
             // a file was uploaded
             // generate a unique filename
             $filename = $this->generateRandomProfilePictureFilename();
-            $this->setProfilePicturePath($filename.'.'.$this->getProfilePictureFile()->guessExtension());
+            $this->setProfilePicturePath($filename . '.' . $this->getProfilePictureFile()
+                ->guessExtension());
         }
     }
 
@@ -255,14 +249,15 @@ class User extends BaseUser
      * @return string
      */
     public function generateRandomProfilePictureFilename() {
-        $count                  =   0;
+        $count = 0;
         do {
             $generator = new SecureRandom();
             $random = $generator->nextBytes(16);
             $randomString = bin2hex($random);
-            $count++;
-        }
-        while(file_exists($this->getUploadRootDir().'/'.$randomString.'.'.$this->getProfilePictureFile()->guessExtension()) && $count < 50);
+            $count ++;
+        } while (file_exists(
+                $this->getUploadRootDir() . '/' . $randomString . '.' . $this->getProfilePictureFile()->guessExtension()) &&
+                 $count < 50);
 
         return $randomString;
     }
@@ -286,9 +281,10 @@ class User extends BaseUser
         $this->getProfilePictureFile()->move($this->getUploadRootDir(), $this->getProfilePicturePath());
 
         // check if we have an old image
-        if (isset($this->tempProfilePicturePath) && file_exists($this->getUploadRootDir().'/'.$this->tempProfilePicturePath)) {
+        if (isset($this->tempProfilePicturePath) &&
+                 file_exists($this->getUploadRootDir() . '/' . $this->tempProfilePicturePath)) {
             // delete the old image
-            unlink($this->getUploadRootDir().'/'.$this->tempProfilePicturePath);
+            unlink($this->getUploadRootDir() . '/' . $this->tempProfilePicturePath);
             // clear the temp image path
             $this->tempProfilePicturePath = null;
         }
@@ -298,11 +294,9 @@ class User extends BaseUser
     /**
      * @ORM\PostRemove()
      */
-    public function removeProfilePictureFile()
-    {
+    public function removeProfilePictureFile() {
         if ($file = $this->getProfilePictureAbsolutePath() && file_exists($this->getProfilePictureAbsolutePath())) {
             unlink($file);
         }
     }
-
 }

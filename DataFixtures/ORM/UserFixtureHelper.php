@@ -1,7 +1,7 @@
 <?php
 
 /**************************************************************************
- * LoadUserData.php, CmDB
+ * UserFixtureHelper.php, CmDB
  *
  * Mickael Gaillard Copyright 2016
  * Description :
@@ -13,12 +13,13 @@
  **************************************************************************/
 namespace Tact\DoryBundle\DataFixtures\ORM;
 
+use Sonata\UserBundle\Entity\BaseUser as BaseUser;
 use Doctrine\Common\Persistence\ObjectManager;
 use Tact\DoryBundle\Entity\User;
 use Tact\DoryBundle\DataFixtures\ORM\Base\AbstractOrdererFixture;
 use FOS\UserBundle\Doctrine\UserManager;
 
-class LoadUserData extends AbstractOrdererFixture
+abstract class UserFixtureHelper extends AbstractOrdererFixture
 {
 
     /**
@@ -36,66 +37,7 @@ class LoadUserData extends AbstractOrdererFixture
     protected $count = 0;
 
     /**
-     *
-     * {@inheritdoc}
-     *
-     * @see \Tact\DoryBundle\DataFixtures\ORM\Base\AbstractOrdererFixture::generateMinimumFixtures()
-     */
-    protected function generateMinimumFixtures(ObjectManager $manager) {
-        $result = [];
-
-        $this->userManager = $this->container->get('fos_user.user_manager');
-
-        // Administrator
-        $user = $this->makeUser('admin', true, 'TJ8K257Z9A1lEVA', 'Administrator', '',
-                array(
-                    User::ROLE_DEFAULT,
-                    User::ROLE_API,
-                    User::ROLE_SUPER_ADMIN
-                ), "admin@alfred.com", new \DateTime('2014-01-01'), 'http://www.tactfactory.com', User::GENDER_UNKNOWN,
-                'fr_FR', 'Europe/Paris', '+33100000000', 'user_admin');
-
-        $this->userManager->updateUser($user, true);
-        $manager->flush();
-
-        return $result;
-    }
-
-    /**
-     *
-     * {@inheritdoc}
-     *
-     * @see \Tact\DoryBundle\DataFixtures\ORM\Base\AbstractOrdererFixture::generateTestFixtures()
-     */
-    protected function generateTestFixtures(ObjectManager $manager) {
-        $result = [];
-
-        for ($i = 4; $i <= 150; $i ++) {
-            $user = $this->makeUser($this->faker->unique()->firstNameMale, true, '0', $this->faker->firstNameMale,
-                    $this->faker->lastName,
-                    array(
-                        User::ROLE_DEFAULT,
-                        User::ROLE_API
-                    ), $this->faker->email, $this->faker->dateTimeThisCentury, 'http://www.test.com', User::GENDER_MALE,
-                    $this->faker->locale, $this->faker->timezone, $this->faker->phoneNumber, $i);
-            $this->userManager->updateUser($user, true);
-        }
-
-        return $result;
-    }
-
-    /**
-     *
-     * {@inheritdoc}
-     *
-     * @see \Doctrine\Common\DataFixtures\OrderedFixtureInterface::getOrder()
-     */
-    public function getOrder() {
-        return 100;
-    }
-
-    /**
-     * Make a user fixture object.
+     * Make then return a user fixture object.
      *
      * @param string $username
      * @param boolean $enable
@@ -114,11 +56,89 @@ class LoadUserData extends AbstractOrdererFixture
      *
      * @return \Tact\DoryBundle\Entity\User
      */
-    protected function makeUser($username, $enable, $password, $firstname, $lastname, $roles, $email, $birthday,
-            $website, $gender, $locale, $timeZone, $phone, $ref = null) {
-        ++ $this->count;
+    abstract protected function makeUser($username, $enable, $password, $firstname, $lastname, $roles, $email, $birthday,
+            $website, $gender, $locale, $timeZone, $phone, $ref = null);
 
-        $user = $this->userManager->createUser();
+    /**
+     *
+     * {@inheritdoc}
+     *
+     * @see \Tact\DoryBundle\DataFixtures\ORM\Base\AbstractOrdererFixture::generateMinimumFixtures()
+     */
+    protected function generateMinimumFixtures(ObjectManager $manager) {
+        $result = [];
+
+        $this->userManager = $this->container->get('fos_user.user_manager');
+
+        // Administrator
+        $result[] = $this->makeUser('admin', true, 'TJ8K257Z9A1lEVA', 'Administrator', '',
+                array(
+                    User::ROLE_DEFAULT,
+                    User::ROLE_API,
+                    User::ROLE_SUPER_ADMIN
+                ), "admin@alfred.com", new \DateTime('2014-01-01'), 'http://www.tactfactory.com', User::GENDER_UNKNOWN,
+                'fr_FR', 'Europe/Paris', '+33100000000', 'user_admin');
+
+        return $result;
+    }
+
+    /**
+     *
+     * {@inheritdoc}
+     *
+     * @see \Tact\DoryBundle\DataFixtures\ORM\Base\AbstractOrdererFixture::generateTestFixtures()
+     */
+    protected function generateTestFixtures(ObjectManager $manager) {
+        $result = [];
+
+        for ($i = 4; $i <= 150; $i ++) {
+            $result[] = $this->makeUser($this->faker->unique()->firstNameMale, true, '0', $this->faker->firstNameMale,
+                    $this->faker->lastName,
+                    array(
+                        User::ROLE_DEFAULT,
+                        User::ROLE_API
+                    ), $this->faker->email, $this->faker->dateTimeThisCentury, 'http://www.test.com', User::GENDER_MALE,
+                    $this->faker->locale, $this->faker->timezone, $this->faker->phoneNumber, $i);
+        }
+
+        return $result;
+    }
+
+    /**
+     *
+     * {@inheritdoc}
+     *
+     * @see \Doctrine\Common\DataFixtures\OrderedFixtureInterface::getOrder()
+     */
+    public function getOrder() {
+        return 100;
+    }
+
+    /**
+     * Make a user fixture object.
+     *
+     * @param BaseUser $user
+     *            The user entity to fill.
+     * @param string $username
+     * @param boolean $enable
+     * @param string $password
+     * @param string $firstname
+     * @param string $lastname
+     * @param string[] $roles
+     * @param string $email
+     * @param \DateTime $birthday
+     * @param string $website
+     * @param char $gender
+     * @param string $locale
+     * @param string $timeZone
+     * @param string $phone
+     * @param string $ref
+     *
+     * @return \Tact\DoryBundle\Entity\User
+     */
+    protected function fillUser(BaseUser $user, $username, $enable, $password, $firstname, $lastname, $roles, $email,
+            $birthday, $website, $gender, $locale, $timeZone, $phone) {
+        ++ $this->count;
 
         $user->setUsername($username);
         $user->setEnabled($enable);
@@ -135,12 +155,20 @@ class LoadUserData extends AbstractOrdererFixture
         $user->setPhone($phone);
         $user->setProfilePicturePath('img.jpg');
 
-        if (! $ref) {
-            $ref = "usr-" . $this->count;
+        return $user;
+    }
+
+    /**
+     *
+     * {@inheritdoc}
+     *
+     * @see \Tact\DoryBundle\DataFixtures\ORM\Base\AbstractOrdererFixture::generateTestFixtures()
+     */
+    protected function saveAll(ObjectManager $manager, $objects) {
+        foreach ($objects as $object) {
+            $this->userManager->updateUser($object, true);
         }
 
-        $this->addReference($ref, $user);
-
-        return $user;
+        $manager->flush();
     }
 }

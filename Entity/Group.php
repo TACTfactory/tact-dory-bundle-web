@@ -1,4 +1,5 @@
 <?php
+
 /**************************************************************************
  * Group.php, Tact Dory.
  *
@@ -16,10 +17,12 @@ use Sonata\UserBundle\Entity\BaseGroup as BaseGroup;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity
- * @ORM\Table(name="sys_group")
+ * @ORM\MappedSuperclass()
+ * @ORM\HasLifecycleCallbacks()
  */
-class Group extends BaseGroup {
+class Group extends BaseGroup
+{
+
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
@@ -27,14 +30,12 @@ class Group extends BaseGroup {
      */
     protected $id;
 
-
     /**
      * Get id
      *
      * @return integer
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 }
