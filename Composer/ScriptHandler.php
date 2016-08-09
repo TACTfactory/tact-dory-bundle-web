@@ -35,10 +35,26 @@ class ScriptHandler
     const APP_KERNEL_OLD_VALUE = 'return $bundles';
 
     const APP_KERNEL_NEW_VALUE = '$bundles = \Tact\DoryBundle\Utils\KernelImporter::mergeLocalBundles(' .
-             '$bundles, $this->getEnvironment());' . self::ENDL . self::ENDL . self::TAB . self::TAB . self::APP_KERNEL_OLD_VALUE;
+             '$bundles, $this->getEnvironment());' . self::ENDL . self::ENDL . self::TAB . self::TAB .
+             self::APP_KERNEL_OLD_VALUE;
 
     const ROUTING_CONTENT = "\r\ndory: \r\n" . self::TAB .
              "resource: \"@TactDoryBundle/Resources/config/routing.yml\"\r\n" . self::TAB . "prefix: /\r\n";
+
+    /**
+     */
+    public static function tempTest() {
+        $content = '# This file is auto-generated during the dory install' . self::ENDL . 'parameters:' . self::ENDL .
+                 self::TAB . 'database_driver: pdo_mysql' . self::ENDL . self::TAB . 'database_type: mysql' . self::ENDL .
+                 self::TAB . 'database_host: 127.0.0.1' . self::ENDL . self::TAB . 'database_port: 3306' . self::ENDL .
+                 self::TAB . 'database_name: symfony' . self::ENDL . self::TAB . 'database_user: root' . self::ENDL .
+                 self::TAB . 'database_password: root' . self::ENDL . self::TAB . 'mailer_transport: smtp' . self::ENDL .
+                 self::TAB . 'mailer_host: 127.0.0.1' . self::ENDL . self::TAB . 'mailer_user: null' . self::ENDL .
+                 self::TAB . 'mailer_password: null' . self::ENDL . self::TAB . 'locale: en' . self::ENDL . self::TAB .
+                 'secret: ThisTokenIsNotSoSecretChangeIt';
+
+        file_put_contents(sprintf('%s/%s', self::PROJECT_ROOT_PATH, 'app/config/parameters.yml'), $content);
+    }
 
     /**
      * Install the dory bundle.
