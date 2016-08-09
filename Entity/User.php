@@ -24,6 +24,7 @@ use Symfony\Component\Security\Core\Util\SecureRandom;
 /**
  * User
  *
+ * @ORM\Table(name="sys_user")
  * @ORM\MappedSuperclass()
  * @ORM\HasLifecycleCallbacks()
  *
@@ -49,7 +50,8 @@ class User extends BaseUser
     protected $id;
 
     /**
-     * ManyToMany mapping here only for information. You must have to override this one if you use user system.
+     * ManyToMany mapping here only for information.
+     * You must have to override this one if you use user system.
      *
      * @ORM\ManyToMany(targetEntity="Tact\DoryBundle\Entity\Group")
      * @ORM\JoinTable(name="sys_group_user",
@@ -238,8 +240,9 @@ class User extends BaseUser
             // a file was uploaded
             // generate a unique filename
             $filename = $this->generateRandomProfilePictureFilename();
-            $this->setProfilePicturePath($filename . '.' . $this->getProfilePictureFile()
-                ->guessExtension());
+            $this->setProfilePicturePath(
+                    $filename . '.' . $this->getProfilePictureFile()
+                        ->guessExtension());
         }
     }
 
