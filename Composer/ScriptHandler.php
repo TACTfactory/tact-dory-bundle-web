@@ -114,7 +114,7 @@ class ScriptHandler
         $content = file_get_contents($filepath);
 
         if (strpos($content, 'DoryBundle') == false) {
-           $newValue= 'import:'.self::ENDL.self::TAB.'- { resource: "@TactDoryBundle/Resources/config/config.yml" } # Not loaded by Dory extention due to needed execution order.';
+           $newValue= 'imports:'.self::ENDL.self::TAB.'- { resource: "@TactDoryBundle/Resources/config/config.yml" } # Not loaded by Dory extention due to needed execution order.';
 
             if (strpos($content, 'imports:')) {
                 $content = str_replace('imports:', $newValue, $content);
