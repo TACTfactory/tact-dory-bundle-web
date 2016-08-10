@@ -111,6 +111,7 @@ class ScriptHandler
     private static function updateConfig()
     {
         $filepath = sprintf('%s/%s', self::PROJECT_ROOT_PATH,'app/config/config.yml');
+        $content = file_get_contents($filepath);
 
         if (strpos($content, 'DoryBundle') == false) {
            $newValue= 'import:'.self::ENDL.self::TAB.'- { resource: "@TactDoryBundle/Resources/config/config.yml" } # Not loaded by Dory extention due to needed execution order.';
