@@ -65,6 +65,7 @@ class ScriptHandler
         self::copyScripts();
         self::addRouting();
         self::updateAppKernel();
+        self::updateConfig();
     }
 
     /**
@@ -95,11 +96,30 @@ class ScriptHandler
      */
     private static function updateAppKernel() {
         $filepath = self::APP_KERNEL_DESTINATION_PATH;
+        $content = file_get_contents($filepath);
 
-        if (strpos(file_get_contents($filepath), 'DoryBundle') == false) {
-            $content = file_get_contents($filepath);
-
+        if (strpos($content, 'DoryBundle') == false) {
             $content = str_replace(self::APP_KERNEL_OLD_VALUE, self::APP_KERNEL_NEW_VALUE, $content);
+
+            file_put_contents($filepath, $content);
+        }
+    }
+
+    /**
+     * Update the config file to add default
+     */
+    private static function updateConfig()
+    {
+        $filepath = sprintf('%s/%s', self::PROJECT_ROOT_PATH,'app/config/config.yml');
+
+        if (strpos($content, 'DoryBundle') == false) {
+           $newValue= 'import:'.self::ENDL.self::TAB.'- { resource: "@TactDoryBundle/Resources/config/config.yml" } # Not loaded by Dory extention due to needed execution order.';
+
+            if (strpos($content, 'imports:')) {
+                $content = str_replace('imports:', $newValue, $content);
+            } else{
+                $content = $newValue.self::ENDL.$content;
+            }
 
             file_put_contents($filepath, $content);
         }
