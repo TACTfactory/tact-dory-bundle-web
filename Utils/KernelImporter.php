@@ -90,7 +90,7 @@ abstract class KernelImporter
                         new \Sensio\Bundle\DistributionBundle\SensioDistributionBundle(),
                         new \Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle(),
                         new \Bazinga\Bundle\FakerBundle\BazingaFakerBundle(),
-                        new \CoreSphere\ConsoleBundle\CoreSphereConsoleBundle(),
+                        // new \CoreSphere\ConsoleBundle\CoreSphereConsoleBundle(),
                         new \Liip\FunctionalTestBundle\LiipFunctionalTestBundle()
                     ]);
         }
