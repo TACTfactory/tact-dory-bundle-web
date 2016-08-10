@@ -1,7 +1,6 @@
 # User Config
 sonata_user:
     security_acl: true
-    manager_type: orm # can be orm or mongodb
     #admin:
     #    user:
     #        class:      TactDory\CoreBundle\Admin\UserAdmin
@@ -25,3 +24,13 @@ sonata_block:
         sonata.user.block.account: # used to display menu option (login option)
         sonata.block.service.text: # used to if you plan to use Sonata user routes
         sonata.block.service.action:
+
+sonata_intl:
+    timezone:
+        locales:
+            fr:    Europe/Paris
+            en_UK: Europe/London
+        detectors:
+            - sonata.intl.timezone_detector.user ## Need fosuser.
+            #- sonata.intl.timezone_detector.locale ## Default.
+        default: Europe/Paris
