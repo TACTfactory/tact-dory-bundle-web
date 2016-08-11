@@ -25,7 +25,7 @@ interface ITactEnumWithLabel extends ITactEnum
      *
      * @return string[] All necessary constants (as keys) with a french label (as value).
      */
-    static function getPossibilitiesWithLabel();
+    static function getListWithLabel();
 
     /**
      * Get the label for the given constant.

@@ -35,7 +35,7 @@ abstract class TactEnumBase implements ITactEnum
      * {@inheritdoc}
      *
      */
-    public static function getPossibilities()
+    public static function getList()
     {
         return array_unique(array_values(self::getConstants()));
     }

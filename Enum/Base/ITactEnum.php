@@ -21,6 +21,8 @@ interface ITactEnum
     /**
      * Get the constants declared on child.
      *
+     * The internal values.
+     *
      * @return array
      */
     static function getConstants();
@@ -30,5 +32,5 @@ interface ITactEnum
      *
      * @return integer[]
      */
-    static function getPossibilities();
+    static function getList();
 }

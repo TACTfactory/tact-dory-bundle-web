@@ -30,7 +30,7 @@ abstract class TactEnumBaseWithLabel extends TactEnumBase implements ITactEnumWi
         // Get the class that is asking for who awoke it
         $class = get_called_class();
 
-        $possibilities = $class::getPossibilitiesWithLabel();
+        $possibilities = $class::getListWithLabel();
 
         if (in_array($constant, array_keys($possibilities))) {
             $result = $possibilities[$constant];
