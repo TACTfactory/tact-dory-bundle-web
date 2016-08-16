@@ -37,6 +37,8 @@ abstract class TactEnumBase implements ITactEnum
      */
     public static function getList()
     {
-        return array_unique(array_values(self::getConstants()));
+        $constants = self::getConstants();
+
+        return array_unique(array_combine($constants, $constants));
     }
 }
