@@ -92,7 +92,9 @@ abstract class UserFixtureHelper extends AbstractOrdererFixture
         $result = [];
 
         for ($i = 4; $i <= 150; $i ++) {
-            $result[] = $this->makeUser($this->faker->unique()->firstNameMale, true, '0', $this->faker->firstNameMale,
+            $username = sprintf('fake_%s', $this->faker->unique()->firstNameMale);
+
+            $result[] = $this->makeUser($username, true, '0', $this->faker->firstNameMale,
                     $this->faker->lastName,
                     array(
                         User::ROLE_DEFAULT,
