@@ -4,8 +4,6 @@ framework:
         storage_id: session.storage.mock_file
     profiler:
         collect: false
-    validation:
-        cache: apcu
 
 web_profiler:
     toolbar: false
