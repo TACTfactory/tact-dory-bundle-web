@@ -71,7 +71,7 @@ trait EntityBaseTrait
     private $sync_dTag;
 
     /**
-     * @ORM\Column(name="create_at", type="datetime")
+     * @ORM\Column(name="created_at", type="datetime")
      * @JSON\Expose
      * @JSON\Groups({"api_process"})
      * @JSON\Since("1.0")
@@ -79,10 +79,10 @@ trait EntityBaseTrait
      *
      * @var \DateTime
      */
-    private $createAt;
+    private $createdAt;
 
     /**
-     * @ORM\Column(name="update_at", type="datetime", nullable = true)
+     * @ORM\Column(name="updated_at", type="datetime", nullable = true)
      * @JSON\Expose
      * @JSON\Groups({"api_process"})
      * @JSON\Since("1.0")
@@ -90,7 +90,7 @@ trait EntityBaseTrait
      *
      * @var \DateTime
      */
-    private $updateAt;
+    private $updatedAt;
 
     /**
      * @ORM\Column(type="boolean", options = {"default" = true})
@@ -268,7 +268,7 @@ trait EntityBaseTrait
      *
      * @return EntityBase
      */
-    public function setCreateAt($createAt)
+    public function setCreatedAt($createAt)
     {
         $this->createAt = $createAt;
 
@@ -280,7 +280,7 @@ trait EntityBaseTrait
      *
      * @return \DateTime
      */
-    public function getCreateAt()
+    public function getCreatedAt()
     {
         return $this->createAt;
     }
@@ -292,7 +292,7 @@ trait EntityBaseTrait
      *
      * @return EntityBase
      */
-    public function setUpdateAt($updateAt)
+    public function setUpdatedAt($updateAt)
     {
         $this->updateAt = $updateAt;
 
@@ -304,7 +304,7 @@ trait EntityBaseTrait
      *
      * @return \DateTime
      */
-    public function getUpdateAt()
+    public function getUpdatedAt()
     {
         return $this->updateAt;
     }
