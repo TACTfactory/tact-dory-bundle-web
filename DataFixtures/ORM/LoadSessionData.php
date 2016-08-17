@@ -29,15 +29,17 @@ class LoadSessionData extends MainAbstractFixture implements OrderedFixtureInter
      */
     const ERROR_FLAG_DATABASE_ALIAS = 'Impossible to load session with "%s" as sgbd parameter into configuration.';
 
-    private $session_shema_mysql = "CREATE TABLE sys_session (
+    const SESSION_SCHEMA_SQLITE = "CREATE TABLE sys_session (
         session_id varchar(255) NOT NULL,
         session_value BLOB NOT NULL,
         session_time int(11) NOT NULL,
         sess_lifetime INT NOT NULL,
         PRIMARY KEY (session_id)
-        ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
+        )";
 
-    private $session_shema_postgresql = "CREATE TABLE sys_session (
+    const SESSION_SCHEMA_MYSQL = self::SESSION_SCHEMA_SQLITE . " ENGINE=InnoDB DEFAULT CHARSET=utf8;";
+
+    const SESSION_SCHEMA_POSTGRESQL = "CREATE TABLE sys_session (
         session_id VARCHAR(128) NOT NULL PRIMARY KEY,
         session_value BYTEA NOT NULL,
         session_time INTEGER NOT NULL,
@@ -52,17 +54,21 @@ class LoadSessionData extends MainAbstractFixture implements OrderedFixtureInter
     public function load(ObjectManager $manager) {
         $sgbd = $this->container->getParameter('database_type');
 
-        switch ($sgbd) {
-            case DatabaseTypes::POSTGRES:
-                $query = $this->session_shema_postgresql;
-                break;
-            case DatabaseTypes::MYSQL:
-                $query = $this->session_shema_mysql;
-                break;
-            default:
-                $message = sprintf(self::ERROR_FLAG_DATABASE_ALIAS, $sgbd);
-                throw new InvalidArgumentException($message);
-                break;
+        if ($this->container->get('kernel')->getEnvironment() === 'test') {
+            $query = self::SESSION_SCHEMA_SQLITE;
+        } else {
+            switch ($sgbd) {
+                case DatabaseTypes::POSTGRES:
+                    $query = self::SESSION_SCHEMA_POSTGRESQL;
+                    break;
+                case DatabaseTypes::MYSQL:
+                    $query = self::SESSION_SCHEMA_MYSQL;
+                    break;
+                default:
+                    $message = sprintf(self::ERROR_FLAG_DATABASE_ALIAS, $sgbd);
+                    throw new InvalidArgumentException($message);
+                    break;
+            }
         }
 
         $manager->getConnection()->exec($query);

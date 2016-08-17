@@ -33,4 +33,12 @@ abstract class DatabaseTypes extends TactEnumBase
      * @var string
      */
     const MYSQL = 'mysql';
+
+
+    /**
+     * SQL Lite sgbd alias.
+     *
+     * @var string
+     */
+    const SQLITE = 'sqlite';
 }
