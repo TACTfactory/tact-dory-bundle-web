@@ -84,16 +84,16 @@ interface IEntityBase
     // public function getSyncDTag();
 
     /**
-     * Set createAt
+     * Set createdAt
      *
-     * @param \DateTime $createAt
+     * @param \DateTime $createdAt
      *
      * @return EntityBase
      */
-    public function setCreateAt($createAt);
+    public function setCreatedAt($createdAt);
 
     /**
-     * Get createAt
+     * Get createdAt
      *
      * @return \DateTime
      */
@@ -101,16 +101,16 @@ interface IEntityBase
 
 
     /**
-     * Set updateAt
+     * Set updatedAt
      *
-     * @param \DateTime $updateAt
+     * @param \DateTime $updatedAt
      *
      * @return EntityBase
      */
-    public function setUpdatedAt($updateAt);
+    public function setUpdatedAt($updatedAt);
 
     /**
-     * Get updateAt
+     * Get updatedAt
      *
      * @return \DateTime
      */
