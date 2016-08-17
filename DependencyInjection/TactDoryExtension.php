@@ -32,10 +32,6 @@ class TactDoryExtension extends Extension implements PrependExtensionInterface
      *
      */
     public function prepend(ContainerBuilder $container) {
-        $bundles = $container->getParameter('kernel.bundles');
-
-        $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
-        $loader->load('config.yml');
     }
 
     /**
