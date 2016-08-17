@@ -10,7 +10,7 @@
  * Last update : Aug 17, 2016
  *
  **************************************************************************/
-namespace Tact\Dorybundle\Tests\Base;
+namespace Tact\DoryBundle\Tests\Base;
 
 /**
  * AbstractControllerTest.
