@@ -97,7 +97,8 @@ interface IEntityBase
      *
      * @return \DateTime
      */
-    public function getCreateAt();
+    public function getCreatedAt();
+
 
     /**
      * Set updateAt
@@ -106,14 +107,14 @@ interface IEntityBase
      *
      * @return EntityBase
      */
-    public function setUpdateAt($updateAt);
+    public function setUpdatedAt($updateAt);
 
     /**
      * Get updateAt
      *
      * @return \DateTime
      */
-    public function getUpdateAt();
+    public function getUpdatedAt();
 
     // /**
     // * Set the employee state.
