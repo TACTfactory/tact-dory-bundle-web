@@ -35,53 +35,53 @@ interface IEntityBase
      */
     public function getId();
 
-    /**
-     * Set syncUDate
-     *
-     * @param \DateTime $syncUDate
-     *
-     * @return EntityBase
-     */
-    public function setSyncUDate($syncUDate);
+    // /**
+    // * Set syncUDate
+    // *
+    // * @param \DateTime $syncUDate
+    // *
+    // * @return EntityBase
+    // */
+    // public function setSyncUDate($syncUDate);
 
-    /**
-     * Get mobileId
-     *
-     * @return integer
-     */
-    public function getMobileId();
+    // /**
+    // * Get mobileId
+    // *
+    // * @return integer
+    // */
+    // public function getMobileId();
 
-    /**
-     * Set mobileId
-     *
-     * @param integer $mobileId
-     *
-     * @return EntityBase
-     */
-    public function setMobileId($mobileId);
+    // /**
+    // * Set mobileId
+    // *
+    // * @param integer $mobileId
+    // *
+    // * @return EntityBase
+    // */
+    // public function setMobileId($mobileId);
 
-    /**
-     * Get syncUDate
-     *
-     * @return \DateTime
-     */
-    public function getSyncUDate();
+    // /**
+    // * Get syncUDate
+    // *
+    // * @return \DateTime
+    // */
+    // public function getSyncUDate();
 
-    /**
-     * Set syncDTag
-     *
-     * @param boolean $syncDTag
-     *
-     * @return EntityBase
-     */
-    public function setSyncDTag($syncDTag);
+    // /**
+    // * Set syncDTag
+    // *
+    // * @param boolean $syncDTag
+    // *
+    // * @return EntityBase
+    // */
+    // public function setSyncDTag($syncDTag);
 
-    /**
-     * Get syncDTag
-     *
-     * @return boolean
-     */
-    public function getSyncDTag();
+    // /**
+    // * Get syncDTag
+    // *
+    // * @return boolean
+    // */
+    // public function getSyncDTag();
 
     /**
      * Set createAt
@@ -115,24 +115,24 @@ interface IEntityBase
      */
     public function getUpdateAt();
 
-    /**
-     * Set the employee state.
-     *
-     * Modify linked user.
-     */
-    public function setEnabled($newState);
+    // /**
+    // * Set the employee state.
+    // *
+    // * Modify linked user.
+    // */
+    // public function setEnabled($newState);
 
-    /**
-     * Get if the employee is currently enable.
-     *
-     * @return boolean
-     */
-    public function isEnabled();
+    // /**
+    // * Get if the employee is currently enable.
+    // *
+    // * @return boolean
+    // */
+    // public function isEnabled();
 
-    /**
-     * Get enabled
-     *
-     * @return boolean
-     */
-    public function getEnabled();
+    // /**
+    // * Get enabled
+    // *
+    // * @return boolean
+    // */
+    // public function getEnabled();
 }
