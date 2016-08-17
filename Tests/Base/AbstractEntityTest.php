@@ -15,8 +15,9 @@ namespace Tact\DoryBundle\Tests\Base;
 abstract class AbstractEntityTest extends AbstractTactTest
 {
 
-    // Tests methods.
-
+    /**
+     * Test to update the entity.
+     */
     public abstract function testUpdate();
 
     /**

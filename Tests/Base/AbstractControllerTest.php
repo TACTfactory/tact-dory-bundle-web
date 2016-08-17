@@ -15,6 +15,6 @@ namespace Tact\Dorybundle\Tests\Base;
 /**
  * AbstractControllerTest.
  */
-abstract class AbstractControllerTest
+abstract class AbstractControllerTest extends AbstractTactTest
 {
 }
