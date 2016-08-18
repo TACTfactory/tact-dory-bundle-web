@@ -17,12 +17,20 @@ use Sonata\AdminBundle\Form\FormMapper;
 class UserAdmin extends \Sonata\UserBundle\Admin\Model\UserAdmin
 {
 
+    /**
+     *
+     * {@inheritdoc}
+     *
+     * @see \Sonata\UserBundle\Admin\Model\UserAdmin::configureFormFields()
+     */
     protected function configureFormFields(FormMapper $formMapper) {
         parent::configureFormFields($formMapper);
 
         $now = new \DateTime();
 
-        $formMapper->add('dateOfBirth', 'sonata_type_date_picker',
+        $formMapper->tab('User')
+            ->with('Profile')
+            ->add('dateOfBirth', 'sonata_type_date_picker',
                 array(
                     'years' => range(1900, $now->format('Y')),
                     'dp_min_date' => '1-1-1900',
@@ -30,6 +38,8 @@ class UserAdmin extends \Sonata\UserBundle\Admin\Model\UserAdmin
                     'required' => false,
                     'translation_domain' => $this->getTranslationDomain(),
                     'format' => 'dd/MM/y'
-                ));
+                ))
+            ->end()
+            ->end();
     }
 }
