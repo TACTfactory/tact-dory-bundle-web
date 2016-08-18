@@ -72,7 +72,7 @@ abstract class KernelImporter
             new \Lexik\Bundle\FormFilterBundle\LexikFormFilterBundle(),
 
             // Maintenance.
-            new LexikMaintenanceBundle(),
+            new  \Lexik\Bundle\MaintenanceBundle\LexikMaintenanceBundle(),
 
             // File manager section
             new \Vich\UploaderBundle\VichUploaderBundle(), // File manager
