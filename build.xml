@@ -40,6 +40,9 @@
   <delete dir="${bindir}/logs"/>
   <delete dir="${bindir}/pdepend"/>
   <delete dir="${bindir}/phpdox"/>
+  <delete file="${appdir}/sqlite.db.cache"/>
+  <delete file="${appdir}/sqlite.db.cache-journal"/>
+  <delete file="${appdir}/sqlite.db.cache.fixtures"/>
   <property name="clean.done" value="true"/>
  </target>
 
