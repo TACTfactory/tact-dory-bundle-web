@@ -11,6 +11,9 @@ sonata_user:
             handler:            sonata.user.profile.form.handler.default
             name:               sonata_user_profile_form
             validation_groups:  [Profile]
+    admin:
+        user:
+          class: Tact\DoryBundle\Admin\Model\UserAdmin
 
 sonata_block:
     default_contexts: [cms]
