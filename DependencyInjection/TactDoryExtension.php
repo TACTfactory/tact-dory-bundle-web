@@ -40,10 +40,10 @@ class TactDoryExtension extends Extension implements PrependExtensionInterface
      *
      */
     public function load(array $configs, ContainerBuilder $container) {
-        $configuration = new Configuration();
-        $this->processConfiguration($configuration, $configs);
+//         $configuration = new Configuration();
+//         $this->processConfiguration($configuration, $configs);
 
-        $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
-        $loader->load('services.yml');
+//         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
+//         $loader->load('services.yml');
     }
 }
