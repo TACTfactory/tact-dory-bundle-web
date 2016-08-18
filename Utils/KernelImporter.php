@@ -71,6 +71,9 @@ abstract class KernelImporter
             new \Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
             new \Lexik\Bundle\FormFilterBundle\LexikFormFilterBundle(),
 
+            // Maintenance.
+            new LexikMaintenanceBundle(),
+
             // File manager section
             new \Vich\UploaderBundle\VichUploaderBundle(), // File manager
             new \Knp\Bundle\GaufretteBundle\KnpGaufretteBundle(), // Storage backend
