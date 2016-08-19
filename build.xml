@@ -15,6 +15,7 @@
 
  <property name="bindir" value="${basedir}/bin"/>
  <property name="srcdir" value="${basedir}/src"/>
+ <property name="appdir" value="${basedir}/app"/>
  <property name="pathToUploadsFiles" value="${basedir}/web/uploads/image"/>
 
  <target name="build" depends="prepare, vendors-install, lint, setup, phploc-ci, pdepend, phpmd-ci, phpcs-ci, phpcpd-ci, phpunit, phpdox, git-reports" description="Full process."/>
