@@ -83,7 +83,7 @@ abstract class KernelImporter
             new \Ornicar\GravatarBundle\OrnicarGravatarBundle(), // Gravatar
 
             // Serialization.
-            new Fresh\VichUploaderSerializationBundle\FreshVichUploaderSerializationBundle(),
+            new \Fresh\VichUploaderSerializationBundle\FreshVichUploaderSerializationBundle(),
 
             new TactDoryBundle()
         ];
