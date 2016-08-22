@@ -153,7 +153,7 @@ class ScriptHandler
     private static function updateParameterDist()
     {
         $modified = false;
-        $filepath = sprintf('', self::PROJECT_ROOT_PATH, 'app/config/parameters.yml.dist');
+        $filepath = sprintf('%s/%s', self::PROJECT_ROOT_PATH, 'app/config/parameters.yml.dist');
         $content = file_get_contents($filepath);
 
         foreach (self::$requiredParameters as $parameter => $defaultValue) {
