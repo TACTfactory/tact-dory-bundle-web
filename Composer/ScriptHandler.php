@@ -165,6 +165,8 @@ class ScriptHandler
         }
 
         if ($modified === true) {
+            dump(sprintf("\r\n\r\nNew content (of '%s'):\r\n%s\r\n\r\n", $filepath, $content));
+
             file_put_contents($filepath, $content);
         }
     }
