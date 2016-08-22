@@ -159,18 +159,18 @@ class ScriptHandler
 
         foreach (self::$requiredParameters as $parameter => $defaultValue) {
             if (strpos($content, $parameter)) {
-                $newParameter = sprintf('    %s: %s', $parameter, $defaultValue);
+                $toAdd = sprintf("%s%s    %s: %s", $parameterTarget, self::ENDL, $parameter, $defaultValue);
 
-                str_replace($parameterTarget, sprintf("%s%s%s"), $parameterTarget, self::ENDL, $newParameter);
+                $content = str_replace($parameterTarget, $toAdd, $content);
 
                 $modified = true;
             }
         }
 
         if ($modified === true) {
-            echo(sprintf("\r\n\r\nNew content (of '%s'):\r\n%s\r\n\r\n", $filepath, $content));
+            echo (sprintf("\r\n\r\nNew content (of '%s'):\r\n%s\r\n\r\n", $filepath, $content));
 
-//             file_put_contents($filepath, $content);
+            // file_put_contents($filepath, $content);
         }
     }
 }
