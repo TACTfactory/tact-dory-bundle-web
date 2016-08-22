@@ -155,10 +155,13 @@ class ScriptHandler
         $modified = false;
         $filepath = sprintf('%s/%s', self::PROJECT_ROOT_PATH, 'app/config/parameters.yml.dist');
         $content = file_get_contents($filepath);
+        $parameterTarget = 'parameters:';
 
         foreach (self::$requiredParameters as $parameter => $defaultValue) {
             if (strpos($content, $parameter)) {
                 $newParameter = sprintf('    %s: %s', $parameter, $defaultValue);
+
+                str_replace($parameterTarget, sprintf("%s%s%s"), $parameterTarget, self::ENDL, $newParameter);
 
                 $modified = true;
             }
@@ -167,7 +170,7 @@ class ScriptHandler
         if ($modified === true) {
             echo(sprintf("\r\n\r\nNew content (of '%s'):\r\n%s\r\n\r\n", $filepath, $content));
 
-            file_put_contents($filepath, $content);
+//             file_put_contents($filepath, $content);
         }
     }
 }
