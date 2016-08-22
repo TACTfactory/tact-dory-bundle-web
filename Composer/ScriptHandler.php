@@ -158,7 +158,7 @@ class ScriptHandler
         $parameterTarget = 'parameters:';
 
         foreach (self::$requiredParameters as $parameter => $defaultValue) {
-            if (strpos($content, $parameter)) {
+            if (strpos($content, $parameter) == false) {
                 $toAdd = sprintf("%s%s    %s: %s", $parameterTarget, self::ENDL, $parameter, $defaultValue);
 
                 $content = str_replace($parameterTarget, $toAdd, $content);
