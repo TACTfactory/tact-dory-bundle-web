@@ -1,4 +1,4 @@
-com.dubture.symfony.coreconsole=app/console
-com.dubture.symfony.coredumped_container=app/cache/dev/appDevDebugProjectContainer.xml
+com.dubture.symfony.coreconsole=scripts_to_copy/gravatar.pl
+com.dubture.symfony.coredumped_container=TactDoryBundle.php
 com.dubture.symfony.coreuse_project_phar=false
 eclipse.preferences.version=1

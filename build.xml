@@ -7,7 +7,7 @@
 # Update Oct 7, 2015
 ####################################################################################################################
 -->
-<project name="Alfred_web" default="build">
+<project name="Dory" default="build">
 
  <property name="toolsdir" value=""/>
  <!-- Uncomment the following when the tools are in ${basedir}/vendor/bin -->
