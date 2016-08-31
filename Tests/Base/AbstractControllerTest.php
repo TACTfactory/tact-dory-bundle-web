@@ -17,4 +17,14 @@ namespace Tact\DoryBundle\Tests\Base;
  */
 abstract class AbstractControllerTest extends AbstractTactTest
 {
+
+    /**
+     *
+     * {@inheritdoc}
+     *
+     */
+    protected function setUp() {
+        parent::setup();
+        static::rebuildDatabase();
+    }
 }

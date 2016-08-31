@@ -59,6 +59,21 @@ abstract class AbstractTactTest extends WebTestCase
     protected static $fixturesPath = '';
 
     /**
+     *
+     * {@inheritdoc}
+     *
+     */
+    protected function setUp() {
+        parent::setup();
+
+        self::bootKernel();
+
+        // Init Entity Manager
+        $this->em = static::$kernel->getContainer()->get('doctrine.orm.entity_manager');
+        $this->id = 1;
+    }
+
+    /**
      * It will run before any setUps and tests in given test suite
      * This hook will drop current schema, creat schema and load fixtures
      * then it will create a copy of the databse, so it will be used in the future tests in this suite

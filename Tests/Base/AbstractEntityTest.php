@@ -29,12 +29,6 @@ abstract class AbstractEntityTest extends AbstractTactTest
     protected function setUp() {
         parent::setup();
 
-        self::bootKernel();
-
-        // Init Entity Manager
-        $this->em = static::$kernel->getContainer()->get('doctrine.orm.entity_manager');
-        $this->id = 1;
-
         $this->entity = $this->generateEntity();
         $this->repository = $this->em->getRepository(get_class($this->entity));
 
