@@ -1,7 +1,7 @@
 <?php
 
 /**************************************************************************
- * AbstractControllerTest.php, Sep Conseil
+ * AbstractControllerTest.php, TACT Dory
  *
  * Mickael Gaillard Copyright 2016
  * Description :

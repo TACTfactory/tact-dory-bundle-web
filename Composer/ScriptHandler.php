@@ -1,7 +1,7 @@
 <?php
 
 /**************************************************************************
- * ScriptHandler.php, Sep Conseil
+ * ScriptHandler.php, TACT Dory
  *
  * Mickael Gaillard Copyright 2016
  * Description :
