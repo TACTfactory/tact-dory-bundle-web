@@ -58,42 +58,6 @@ abstract class AbstractTactTest extends WebTestCase
 
     protected static $fixturesPath = '';
 
-    // Methods to override in children classes (DP template method).
-
-//     /**
-//      * Return the name of the targeted entity.
-//      *
-//      * @return string
-//      */
-//     abstract protected function getEntityName();
-
-    /**
-     * Generate then return an entity that
-     */
-    abstract protected function generateEntity();
-
-    // Configurations methods.
-
-    /**
-     *
-     * {@inheritdoc}
-     *
-     */
-    protected function setUp() {
-        parent::setup();
-
-        self::bootKernel();
-
-        // Init Entity Manager
-        $this->em = static::$kernel->getContainer()->get('doctrine.orm.entity_manager');
-        $this->id = 1;
-
-        $this->entity = $this->generateEntity();
-        $this->repository = $this->em->getRepository(get_class($this->entity));
-
-        static::rebuildDatabase();
-    }
-
     /**
      * It will run before any setUps and tests in given test suite
      * This hook will drop current schema, creat schema and load fixtures
