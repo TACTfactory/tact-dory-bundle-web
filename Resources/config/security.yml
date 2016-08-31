@@ -43,6 +43,7 @@ security:
             logout:
                 path:           /admin/logout
             anonymous:          false
+            http_basic: ~ # Need for functionnal tests.
 
         log:
             pattern:            ^/login(.*)
@@ -74,7 +75,7 @@ security:
                 #always_remember_me: true
             # activate different ways to authenticate
 
-            # http_basic: ~
+            http_basic: ~
             # http://symfony.com/doc/current/book/security.html#a-configuring-how-your-users-will-authenticate
 
             # form_login: ~
