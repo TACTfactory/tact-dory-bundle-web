@@ -17,6 +17,12 @@ namespace Tact\DoryBundle\Tests\Base;
  */
 abstract class AbstractControllerTest extends AbstractTactTest
 {
+    /**
+     * The client to use for tests.
+     *
+     * @var Symfony\Bundle\FrameworkBundle\Client
+     */
+    protected $client = null;
 
     /**
      *
@@ -25,6 +31,7 @@ abstract class AbstractControllerTest extends AbstractTactTest
      */
     protected function setUp() {
         parent::setup();
+        $this->client = self::createClient();
         static::rebuildDatabase();
     }
 }
