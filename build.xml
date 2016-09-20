@@ -157,7 +157,7 @@
   </exec>
  </target>
 
- <target name="phpunit" depends="prepare" description="Run unit tests with PHPUnit">
+ <target name="phpunit" depends="prepare, clear-cache-test" description="Run unit tests with PHPUnit">
   <exec executable="${toolsdir}phpunit" failonerror="true">
    <arg value="--configuration"/>
    <arg path="${basedir}/app/phpunit.xml"/>
@@ -279,6 +279,13 @@
    <arg value='app/console' />
    <arg value='cache:clear' />
    <arg value='--env=prod' />
+  </exec>
+ </target>
+ <target name="clear-cache-test" depends="clean" description="Clear the prod cache">
+  <exec executable="php" failonerror="true">
+   <arg value='app/console' />
+   <arg value='cache:clear' />
+   <arg value='--env=test' />
   </exec>
  </target>
 
