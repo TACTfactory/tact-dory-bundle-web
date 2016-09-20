@@ -18,7 +18,7 @@
  <property name="appdir" value="${basedir}/app"/>
  <property name="pathToUploadsFiles" value="${basedir}/web/uploads/image"/>
 
- <target name="build" depends="prepare, vendors-install, lint, setup, phploc-ci, pdepend, phpmd-ci, phpcs-ci, phpcpd-ci, phpunit, phpdox, git-reports" description="Full process."/>
+ <target name="build" depends="clean, prepare, vendors-install, lint, setup, phploc-ci, pdepend, phpmd-ci, phpcs-ci, phpcpd-ci, phpunit, phpdox, git-reports" description="Full process."/>
  <target name="build-parallel" depends="prepare,lint,tools-parallel,phpunit,phpdox" description=""/>
  <target name="setup" depends="create-directories-and-acl, sf2-db-drop, sf2-db-create, sf2-schema-create, sf2-fixtures-load, sf2-assets" />
  <target name="setup-prod" depends="setup, clear-cache-prod" />
