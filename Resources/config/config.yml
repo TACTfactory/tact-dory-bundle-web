@@ -30,7 +30,7 @@ framework:
         engines: ['twig']
     default_locale:  "%locale%"
     trusted_hosts:   ~
-    trusted_proxies: ['127.0.0.1']
+    trusted_proxies: [10.10.100.0/24]
     session:
         # handler_id set to null will use default session handler from php.ini
         handler_id:  session.handler.pdo
