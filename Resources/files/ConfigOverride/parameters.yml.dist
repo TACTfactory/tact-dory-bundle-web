@@ -1,0 +1,29 @@
+# This file is a "template" of what your parameters.yml file should look like
+# Set parameters here that may be different on each deployment target of the app, e.g. development, staging, production.
+# http://symfony.com/doc/current/best_practices/configuration.html#infrastructure-related-configuration
+parameters:
+    app.tsdb.name: esoftlink
+    app.tsdb.log: electrical
+    app.tsdb.host: '127.0.0.1'
+    app.tsdb.port: 8086
+    app.tsdb.user: 'admin'
+    app.tsdb.pass: 'admin'
+
+    app.probe.log.default_date_delay: 1 day
+
+    router.request_context.base_url: 
+    router.request_context.scheme: http
+    router.request_context.host: example.com
+    database_driver: pdo_mysql
+    database_type: mysql
+    database_host: 127.0.0.1
+    database_port: 3306
+    database_name: symfony
+    database_user: root
+    database_password: root
+    mailer_transport: smtp
+    mailer_host: 127.0.0.1
+    mailer_user: ~
+    mailer_password: ~
+    locale: en
+    secret: ThisTokenIsNotSoSecretChangeIt

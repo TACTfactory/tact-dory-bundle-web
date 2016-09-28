@@ -28,7 +28,11 @@ class ScriptHandler
 
     const SCRIPT_DIRECTORY = self::DORY_ROOT_PATH . '/scripts_to_copy';
 
-    const ROUTING_DESTINATION_PATH = self::PROJECT_ROOT_PATH . '/app/config/routing.yml';
+    const CONFIG_OVERRIDES_DIRECTORY = self::DORY_ROOT_PATH . '/Resources/files/ConfigOverride';
+
+    const PROJECT_CONF_PATH = self::PROJECT_ROOT_PATH . '/app/config';
+
+    const ROUTING_DESTINATION_PATH = self::PROJECT_ROOT_PATH . '/routing.yml';
 
     const APP_KERNEL_DESTINATION_PATH = self::PROJECT_ROOT_PATH . '/app/AppKernel.php';
 
@@ -40,6 +44,8 @@ class ScriptHandler
 
     const ROUTING_CONTENT = "\r\ndory: \r\n" . self::TAB .
              "resource: \"@TactDoryBundle/Resources/config/routing.yml\"\r\n" . self::TAB . "prefix: /\r\n";
+
+    const CONFIG_IMPORTS = '- { resource: "imports.yml" }';
 
     /**
      * The parameters to add at dist.
@@ -130,20 +136,34 @@ class ScriptHandler
      */
     private static function updateConfig()
     {
-        $filepath = sprintf('%s/%s', self::PROJECT_ROOT_PATH, 'app/config/config.yml');
-        $content = file_get_contents($filepath);
+        { // Check imports.yml into imports.
+            $filepath = sprintf('%s/%s', self::PROJECT_ROOT_PATH, 'app/config/config.yml');
+            $content = file_get_contents($filepath);
+            $flag = sprintf('#%s#', str_replace(' ', '\s*', self::CONFIG_IMPORTS));
 
-        if (strpos($content, 'DoryBundle') == false) {
-            $newValue = 'imports:' . self::ENDL . self::TAB .
-                     '- { resource: "@TactDoryBundle/Resources/config/config.yml" } # Not loaded by Dory extention due to needed execution order.';
+            if (preg_match($flag, $content) == false) {
+                $sentence = sprintf('%s ## Don\'t modify this import.', self::CONFIG_IMPORTS);
+                $newValue = 'imports:' . self::ENDL . self::TAB . $sentence;
 
-            if (strpos($content, 'imports:')) {
-                $content = str_replace('imports:', $newValue, $content);
-            } else {
-                $content = $newValue . self::ENDL . $content;
+                if (preg_match('/\bimports\s*:/', $content)) {
+                    $content = str_replace('imports:', $newValue, $content);
+                } else {
+                    $content = $newValue . self::ENDL . $content;
+                }
+
+                file_put_contents($filepath, $content);
             }
+        }
 
-            file_put_contents($filepath, $content);
+        { // Check that files for overrides are generated.
+            foreach (scandir(self::CONFIG_OVERRIDES_DIRECTORY) as $configFile) {
+                $source = sprintf('%s/%s', self::CONFIG_OVERRIDES_DIRECTORY, $configFile);
+                $destination = sprintf('%s/%s', self::PROJECT_CONF_PATH, $configFile);
+
+                if (file_exists($destination) == false) { // Test if first run.
+                    copy($source, $destination);
+                }
+            }
         }
     }
 

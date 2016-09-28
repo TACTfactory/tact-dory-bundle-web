@@ -1,0 +1,25 @@
+# This file is auto-generated during the composer install
+parameters:
+    app.tsdb.name: esoftlink
+    app.tsdb.log: electrical
+    app.tsdb.host: 127.0.0.1
+    app.tsdb.port: 8086
+    app.tsdb.user: admin
+    app.tsdb.pass: admin
+    app.probe.log.default_date_delay: '1 day'
+    router.request_context.base_url: null
+    router.request_context.scheme: http
+    router.request_context.host: example.com
+    database_driver: pdo_pgsql
+    database_type: pgsql
+    database_host: 127.0.0.1
+    database_port: 5432
+    database_name: esoft
+    database_user: dev
+    database_password: dev
+    mailer_transport: gmail
+    mailer_host: null
+    mailer_user: adresse.seulement.pour.test@gmail.com
+    mailer_password: '-6er5gt26-de+deawx'
+    locale: fr
+    secret: ifuerjkgftegvrt2g5v4rrgf54vt4gh4tr54g1vt54v2gf41v5r51fd41vg41b24vgf51dv14gr25f14bv541fdv54r4gf

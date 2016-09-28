@@ -1,0 +1,3 @@
+imports:
+    - { resource: config_dev.yml }
+    - { resource: "@TactDoryBundle/Resources/config/config_test.yml" } # Not loaded by Dory extention due to needed execution order.

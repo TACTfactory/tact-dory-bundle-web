@@ -1,0 +1,34 @@
+## Default parameters from Dory. 
+## Don't override this file. You can do your modifications into sub imported files.
+## Locals overrides.
+imports:
+    - { resource: "@TactDoryBundle/Resources/config/config.yml" } # Not loaded by Dory extention due to needed execution order.
+    - { resource: security.yml }
+    - { resource: services.yml }
+    - { resource: bdl_fosuser.yml }
+    - { resource: bdl_session.yml }
+    - { resource: bdl_fosrest.yml }
+    - { resource: bdl_migrate.yml }
+    - { resource: bdl_sonata.yml }
+    - { resource: bdl_nelmioapi.yml }
+    - { resource: bdl_paginator.yml }
+    - { resource: bdl_filter.yml }
+    - { resource: bdl_intl.yml }
+    - { resource: bdl_gravatar.yml }
+    - { resource: bdl_files.yml }
+
+framework:
+    router:
+        resource: "%kernel.root_dir%/config/routing.yml"
+        strict_requirements: ~
+    session:
+        handler_id:  ~ # cancel the choice does into dory.
+
+twig:
+    form:
+        resources:
+            - 'SonataCoreBundle:Form:datepicker.html.twig'
+            - 'bootstrap_3_layout.html.twig'
+            - 'bootstrap_3_horizontal_layout.html.twig'
+    form_themes:
+        - 'SonataCoreBundle:Form:datepicker.html.twig'
