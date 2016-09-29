@@ -208,7 +208,7 @@ class ScriptHandlerProcess
                 $source = sprintf('%s/%s', ScriptHandlerPaths::CONFIG_OVERRIDES_DIRECTORY, $configFile);
                 $destination = sprintf('%s/%s', ScriptHandlerPaths::PROJECT_CONF_PATH, $configFile);
 
-                if (file_exists($destination) == false) { // Test if first run.
+                if (file_exists($destination) == false || preg_match('/imports(?:_\w+)?\.yml$/', $subject)) {
                     copy($source, $destination);
                 }
             }
