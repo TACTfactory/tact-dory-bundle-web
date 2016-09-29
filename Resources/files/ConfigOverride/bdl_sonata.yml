@@ -2,14 +2,14 @@ sonata_user:
     security_acl: true
     manager_type: orm # can be orm or mongodb
     class:
-        user:  Tact\CoreBundle\Entity\User
-        group: Tact\CoreBundle\Entity\Group
+        user:  Tact\DoryBundle\Entity\User
+        group: Tact\DoryBundle\Entity\Group
     admin:
         user:
-          class: Tact\CoreBundle\Admin\Model\UserAdmin
+          class: Tact\DoryBundle\Admin\Model\UserAdmin
 
 sonata_admin:
-    title: eSoftLink Manager
+    title: Manager
     dashboard:
         blocks:
             -
@@ -17,7 +17,7 @@ sonata_admin:
                 type: sonata.block.service.text
                 settings:
                     content: >
-                        <h2>Welcome to the eSoftLink Admin</h2>
+                        <h2>Welcome to the Admin</h2>
                         <p>This is a manager of Production data.</p> <br />
             -
                 position: left
