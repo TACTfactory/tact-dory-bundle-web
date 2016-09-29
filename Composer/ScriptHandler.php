@@ -35,7 +35,7 @@ class ScriptHandler
     /**
      * Update the dory bundle.
      */
-    public static function install()
+    public static function update()
     {
         echo "Update TACT Dory Bundle";
 
