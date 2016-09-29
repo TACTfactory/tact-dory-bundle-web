@@ -160,7 +160,7 @@ class ScriptHandlerProcess
     private function addRouting()
     {
         if (strpos(file_get_contents(ScriptHandlerPaths::ROUTING_DESTINATION_PATH), 'TactDoryBundle') == false) {
-            file_put_contents(ScriptHandlerPaths::ROUTING_DESTINATION_PATH, ScriptHandlerPaths::ROUTING_CONTENT, FILE_APPEND);
+            file_put_contents(ScriptHandlerPaths::ROUTING_DESTINATION_PATH, self::ROUTING_CONTENT, FILE_APPEND);
         }
     }
 
