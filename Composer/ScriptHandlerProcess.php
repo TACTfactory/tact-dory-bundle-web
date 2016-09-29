@@ -33,6 +33,8 @@ class ScriptHandlerProcess
 
     const CONFIG_IMPORTS = '- { resource: "imports.yml" }';
 
+    const FLAG_CONFIG_IMPORT_RESOURCE = ' - { resource: "%s" }';
+
     /**
      * The execution mode.
      *
@@ -184,24 +186,10 @@ class ScriptHandlerProcess
      */
     private function updateConfig()
     {
-        { // Check imports.yml into imports.
-            $filepath = sprintf('%s/%s', ScriptHandlerPaths::PROJECT_ROOT_PATH, 'app/config/config.yml');
-            $content = file_get_contents($filepath);
-            $flag = sprintf('#%s#', str_replace(' ', '\s*', self::CONFIG_IMPORTS));
-
-            if (preg_match($flag, $content) == false) {
-                $sentence = sprintf('%s ## Don\'t modify this import.', self::CONFIG_IMPORTS);
-                $newValue = 'imports:' . self::ENDL . self::TAB . $sentence;
-
-                if (preg_match('/\bimports\s*:/', $content)) {
-                    $content = str_replace('imports:', $newValue, $content);
-                } else {
-                    $content = $newValue . self::ENDL . $content;
-                }
-
-                file_put_contents($filepath, $content);
-            }
-        }
+        $this->updateConfigImports('config', 'imports.yml');
+        $this->updateConfigImports('config_dev', '@TactDoryBundle/Resources/config/config_dev.yml');
+        $this->updateConfigImports('config_test', '@TactDoryBundle/Resources/config/config_test.yml');
+        $this->updateConfigImports('config_prod', '@TactDoryBundle/Resources/config/config_prod.yml');
 
         { // Check that files for overrides are generated.
             foreach (scandir(ScriptHandlerPaths::CONFIG_OVERRIDES_DIRECTORY) as $configFile) {
@@ -212,6 +200,33 @@ class ScriptHandlerProcess
                     copy($source, $destination);
                 }
             }
+        }
+    }
+
+    /**
+     * Update the dory importation for a dependency.
+     *
+     * @param string $filenameWithoutExtension
+     * @param string $toImport
+     */
+    private function updateConfigImports(string $filenameWithoutExtension, string $toImport)
+    {
+        $importationLine = sprintf(self::FLAG_CONFIG_IMPORT_RESOURCE, $toImport);
+        $filepath = sprintf('%s/app/config/%s.yml', ScriptHandlerPaths::PROJECT_ROOT_PATH, $filenameWithoutExtension);
+        $content = file_get_contents($filepath);
+        $flag = sprintf('#%s#', str_replace(' ', '\s*', $importationLine));
+
+        if (preg_match($flag, $content) == false) {
+            $sentence = sprintf('%s ## Don\'t modify this import.', $importationLine);
+            $newValue = 'imports:' . self::ENDL . self::TAB . $sentence;
+
+            if (preg_match('/\bimports\s*:/', $content)) {
+                $content = str_replace('imports:', $newValue, $content);
+            } else {
+                $content = $newValue . self::ENDL . $content;
+            }
+
+            file_put_contents($filepath, $content);
         }
     }
 
