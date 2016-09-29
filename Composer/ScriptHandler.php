@@ -12,8 +12,6 @@
  **************************************************************************/
 namespace Tact\DoryBundle\Composer;
 
-use Incenteev\ParameterHandler\ScriptHandler;
-
 /**
  * ScriptHandler.
  */
