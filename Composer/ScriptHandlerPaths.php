@@ -17,6 +17,7 @@ namespace Tact\DoryBundle\Composer;
  */
 abstract class ScriptHandlerPaths
 {
+
     const DORY_ROOT_PATH = __DIR__ . '/..';
 
     const PROJECT_ROOT_PATH = self::DORY_ROOT_PATH . '/../../..';
@@ -27,8 +28,7 @@ abstract class ScriptHandlerPaths
 
     const PROJECT_CONF_PATH = self::PROJECT_ROOT_PATH . '/app/config';
 
-    const ROUTING_DESTINATION_PATH = self::PROJECT_ROOT_PATH . '/routing.yml';
+    const ROUTING_DESTINATION_PATH = self::PROJECT_CONF_PATH . '/routing.yml';
 
     const APP_KERNEL_DESTINATION_PATH = self::PROJECT_ROOT_PATH . '/app/AppKernel.php';
-
 }
