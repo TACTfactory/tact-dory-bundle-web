@@ -1,6 +1,5 @@
 ## Default parameters from Dory. 
 ## Don't override this file. You can do your modifications into sub imported files.
-## Locals overrides.
 imports:
     - { resource: "@TactDoryBundle/Resources/config/config.yml" } # Not loaded by Dory extention due to needed execution order.
     - { resource: security.yml }

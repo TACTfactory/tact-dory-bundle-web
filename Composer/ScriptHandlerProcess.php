@@ -31,9 +31,7 @@ class ScriptHandlerProcess
     const ROUTING_CONTENT = "\r\ndory: \r\n" . self::TAB .
              "resource: \"@TactDoryBundle/Resources/config/routing.yml\"\r\n" . self::TAB . "prefix: /\r\n";
 
-    const CONFIG_IMPORTS = '- { resource: "imports.yml" }';
-
-    const FLAG_CONFIG_IMPORT_RESOURCE = ' - { resource: "%s" }';
+    const FLAG_CONFIG_IMPORT_RESOURCE = '- { resource: "%s" }';
 
     /**
      * The execution mode.

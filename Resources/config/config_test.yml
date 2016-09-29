@@ -1,3 +1,4 @@
+## The Dory rules generalisation about the test execution.
 framework:
     test: ~
     session:
