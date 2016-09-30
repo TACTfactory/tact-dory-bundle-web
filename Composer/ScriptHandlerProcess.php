@@ -33,6 +33,12 @@ class ScriptHandlerProcess
 
     const FLAG_CONFIG_IMPORT_RESOURCE = '- { resource: "%s" }';
 
+    const ADMIN_TRUST_CONTENT_TO_CHANGE = self::TAB . self::TAB . '#        admin:' . self::ENDL
+                                        . self::TAB . self::TAB . '#            anonymous:          true' . self::ENDL;
+
+    const ADMIN_TRUST_ADVERT = '##   By default, Dory make your admin with trust access, ' .
+             'decomment the next lines to have a secured access.' . self::ENDL . self::ADMIN_TRUST_CONTENT_TO_CHANGE;
+
     /**
      * The execution mode.
      *
@@ -188,6 +194,7 @@ class ScriptHandlerProcess
         $this->updateConfigImports('config_dev', '@TactDoryBundle/Resources/config/config_dev.yml');
         $this->updateConfigImports('config_test', '@TactDoryBundle/Resources/config/config_test.yml');
         $this->updateConfigImports('config_prod', '@TactDoryBundle/Resources/config/config_prod.yml');
+        $this->updateAdminTrustOverride(ScriptHandlerPaths::PROJECT_CONF_PATH);
 
         { // Check that files for overrides are generated.
             foreach (scandir(ScriptHandlerPaths::CONFIG_OVERRIDES_DIRECTORY) as $configFile) {
@@ -225,6 +232,27 @@ class ScriptHandlerProcess
             }
 
             file_put_contents($filepath, $content);
+        }
+    }
+
+    /**
+     * Add the step to do for disable trust mode for admin access.
+     *
+     * @param string $filepath
+     */
+    private function updateAdminTrustOverride(string $filepath)
+    {
+        $fileContent = file_get_contents($filepath);
+        $newContent = self::ADMIN_TRUST_CONTENT_TO_CHANGE;
+        $category = 'firewalls:';
+
+        if (strpos($fileContent, str_replace('#', '', $newContent)) === false) {
+            if (strpos($fileContent, $category) === false) {
+                $fileContent .= self::ENDL . self::TAB . $category;
+            }
+
+            $fileContent = str_replace($category, $category . self::ENDL . $newContent, $fileContent);
+            file_put_contents($filepath, $fileContent);
         }
     }
 

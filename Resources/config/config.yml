@@ -1,5 +1,4 @@
 imports:
-    - { resource: ../../../../../app/config/parameters.yml }
     - { resource: security.yml }
     - { resource: services.yml }
     - { resource: bdl_fosuser.yml }

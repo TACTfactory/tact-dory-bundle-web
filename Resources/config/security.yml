@@ -42,7 +42,7 @@ security:
                 use_referer:    true
             logout:
                 path:           /admin/logout
-            anonymous:          false
+            anonymous:          true # Option to override into sub bundle.
             http_basic: ~ # Need for functionnal tests.
 
         log:
