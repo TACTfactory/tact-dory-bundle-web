@@ -75,7 +75,7 @@ trait EntityBaseTrait
      * @JSON\Expose
      * @JSON\Groups({"api_process"})
      * @JSON\Since("1.0")
-     * @JSON\SerializedName("createAt")
+     * @JSON\SerializedName("createdAt")
      *
      * @var \DateTime
      */
@@ -86,7 +86,7 @@ trait EntityBaseTrait
      * @JSON\Expose
      * @JSON\Groups({"api_process"})
      * @JSON\Since("1.0")
-     * @JSON\SerializedName("updateAt")
+     * @JSON\SerializedName("updatedAt")
      *
      * @var \DateTime
      */
@@ -145,8 +145,8 @@ trait EntityBaseTrait
      */
     public function prePersist()
     {
-        $this->createAt = $this->prePersistOneDate($this->createAt);
-        $this->updateAt = $this->prePersistOneDate($this->updateAt);
+        $this->createdAt = $this->prePersistOneDate($this->createdAt);
+        $this->updatedAt = $this->prePersistOneDate($this->updatedAt);
         $this->sync_uDate = $this->prePersistOneDate($this->sync_uDate);
 
         $this->sync_dTag = false;
@@ -176,7 +176,7 @@ trait EntityBaseTrait
      */
     public function preUpdate()
     {
-        $this->updateAt = new \DateTime();
+        $this->updatedAt = new \DateTime();
     }
 
     /**
@@ -262,51 +262,51 @@ trait EntityBaseTrait
     }
 
     /**
-     * Set createAt
+     * Set createdAt
      *
-     * @param \DateTime $createAt
+     * @param \DateTime $createdAt
      *
      * @return EntityBase
      */
-    public function setCreatedAt($createAt)
+    public function setCreatedAt($createdAt)
     {
-        $this->createAt = $createAt;
+        $this->createdAt = $createdAt;
 
         return $this;
     }
 
     /**
-     * Get createAt
+     * Get createdAt
      *
      * @return \DateTime
      */
     public function getCreatedAt()
     {
-        return $this->createAt;
+        return $this->createdAt;
     }
 
     /**
-     * Set updateAt
+     * Set updatedAt
      *
-     * @param \DateTime $updateAt
+     * @param \DateTime $updatedAt
      *
      * @return EntityBase
      */
-    public function setUpdatedAt($updateAt)
+    public function setUpdatedAt($updatedAt)
     {
-        $this->updateAt = $updateAt;
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }
 
     /**
-     * Get updateAt
+     * Get updatedAt
      *
      * @return \DateTime
      */
     public function getUpdatedAt()
     {
-        return $this->updateAt;
+        return $this->updatedAt;
     }
 
     /**
