@@ -34,7 +34,7 @@ class ScriptHandlerProcess
     const FLAG_CONFIG_IMPORT_RESOURCE = '- { resource: "%s" }';
 
     const ADMIN_TRUST_CONTENT_TO_CHANGE = self::TAB . self::TAB . '#admin:' . self::ENDL
-                                        . self::TAB . self::TAB . self::TAB . '#anonymous:          true' . self::ENDL;
+                                        . self::TAB . self::TAB . self::TAB . '#anonymous:          false' . self::ENDL;
 
     const ADMIN_TRUST_ADVERT = self::TAB . self::TAB . '## By default, Dory make your admin with trust access, ' .
              'decomment the next lines to have a secured access.' . self::ENDL . self::TAB . self::TAB .
@@ -247,7 +247,9 @@ class ScriptHandlerProcess
         $fileContent = file_get_contents($filepath);
         $newContent = self::ADMIN_TRUST_CONTENT_TO_CHANGE;
         $category = 'firewalls:';
-        $pattern = sprintf('/%s/', str_replace('#', '#?', $newContent));
+        $pattern = sprintf('/%s/', str_replace('#', '#?',
+                str_replace('true', '(true|false)',
+                        str_replace('false', '(true|false)', $newContent))));
 
         if (preg_match($pattern, $fileContent) == false) {
             if (strpos($fileContent, $category) === false) {
