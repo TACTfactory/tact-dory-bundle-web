@@ -1,4 +1,5 @@
 ## Default parameters from Dory. All its options are overridable.
+## See https://sonata-project.org/bundles/admin/master/doc/reference/security.html for more details.
 sonata_user:
     security_acl: true
     manager_type: orm # can be orm or mongodb
@@ -28,7 +29,7 @@ sonata_admin:
                 type: sonata.block.service.rss
 
     security:
-        handler: sonata.admin.security.handler.role
+        handler: sonata.admin.security.handler.noop # Replace noop by acl or role to activate the sonata rights check.
         # acl security information
         information:
             GUEST:    []

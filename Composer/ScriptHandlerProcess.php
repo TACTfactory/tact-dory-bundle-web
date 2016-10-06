@@ -36,8 +36,10 @@ class ScriptHandlerProcess
     const ADMIN_TRUST_CONTENT_TO_CHANGE = self::TAB . self::TAB . '#admin:' . self::ENDL
                                         . self::TAB . self::TAB . self::TAB . '#anonymous:          true' . self::ENDL;
 
-    const ADMIN_TRUST_ADVERT = self::TAB . self::TAB . '##   By default, Dory make your admin with trust access, ' .
-             'decomment the next lines to have a secured access.' . self::ENDL . self::ADMIN_TRUST_CONTENT_TO_CHANGE;
+    const ADMIN_TRUST_ADVERT = self::TAB . self::TAB . '## By default, Dory make your admin with trust access, ' .
+             'decomment the next lines to have a secured access.' . self::ENDL . self::TAB . self::TAB .
+            '## See the bdl_sonata.yml:sonata_admin:security:handler options to set how sonata check rights.'.
+            self::ENDL . self::ADMIN_TRUST_CONTENT_TO_CHANGE;
 
     /**
      * The execution mode.

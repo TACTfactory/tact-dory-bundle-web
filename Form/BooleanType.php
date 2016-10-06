@@ -10,7 +10,7 @@
  * Last update : Jun 28, 2016
  *
  **************************************************************************/
-namespace Twim\ApiBundle\Form;
+namespace Tact\DoryBundle\Form;
 
 use Tact\DoryBundle\Form\DataTransformer\BooleanTypeToBooleanTransformer;
 use Symfony\Component\Form\AbstractType;
