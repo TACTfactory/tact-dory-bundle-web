@@ -23,6 +23,13 @@ abstract class AbstractTactTest extends WebTestCase
 {
 
     /**
+     * The default id for database/functionnals tests.
+     *
+     * @var integer
+     */
+    const DEFAULT_ID = 1;
+
+    /**
      * The entity manager.
      *
      * @var \Doctrine\ORM\EntityManager
@@ -70,7 +77,7 @@ abstract class AbstractTactTest extends WebTestCase
 
         // Init Entity Manager
         $this->em = static::$kernel->getContainer()->get('doctrine.orm.entity_manager');
-        $this->id = 1;
+        $this->id = self::DEFAULT_ID;
     }
 
     /**

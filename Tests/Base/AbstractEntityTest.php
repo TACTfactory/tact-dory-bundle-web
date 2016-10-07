@@ -56,7 +56,7 @@ abstract class AbstractEntityTest extends AbstractTactTest
      */
     public function testReadAll() {
         $this->entity = $this->repository->findAll();
-        $this->assertNotEmpty($this->entity);
+        $this->assertNotEmpty($this->entity, 'Empty database (no fixture for this entity) or problem(s) on database.');
     }
 
     /**
@@ -64,7 +64,8 @@ abstract class AbstractEntityTest extends AbstractTactTest
      */
     public function testReadOne() {
         $this->entity = $this->repository->findOneById($this->id);
-        $this->assertNotEmpty($this->entity);
+        $this->assertNotEmpty($this->entity, sprintf(
+                'Empty database or database problem or wrong setted id (default %d).', self::DEFAULT_ID));
     }
 
     /**
