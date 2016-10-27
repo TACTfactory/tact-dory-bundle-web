@@ -34,6 +34,29 @@ abstract class ControllerUtils
      */
     const MIME_TEXT        = 'text';
 
+    /**
+     * Handle the given form.
+     *
+     * @param Request $request
+     * @param Form $form
+     * @param bool $html
+     *
+     * @return \Symfony\Component\Form\Form
+     */
+    public function handleForm(Request $request, Form $form, bool $html = null)
+    {
+        if ($html == null) {
+            $html = self::askHTML($request);
+        }
+
+        if ($html) {
+            $form->handleRequest($request);
+        } else {
+            $form->submit($request->request->all());
+        }
+
+        return $form;
+    }
 
     /**
      * Tests if the request ask html response.
