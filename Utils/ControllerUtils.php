@@ -13,6 +13,7 @@
 namespace Tact\DoryBundle\Utils;
 
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Form\Form;
 
 /**
  * ControllerUtils.
