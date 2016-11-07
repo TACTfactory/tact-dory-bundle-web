@@ -44,7 +44,7 @@ abstract class ControllerUtils
      *
      * @return \Symfony\Component\Form\Form
      */
-    public function handleForm(Request $request, Form $form, bool $html = null)
+    public static function handleForm(Request $request, Form $form, bool $html = null)
     {
         if ($html == null) {
             $html = self::askHTML($request);
