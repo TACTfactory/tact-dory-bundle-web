@@ -33,8 +33,6 @@ class UserAdmin extends \Sonata\UserBundle\Admin\Model\UserAdmin
             ->add('dateOfBirth', 'sonata_type_date_picker',
                 array(
                     'years' => range(1900, $now->format('Y')),
-                    'dp_min_date' => '1-1-1900',
-                    'dp_max_date' => $now->format('c'),
                     'required' => false,
                     'translation_domain' => $this->getTranslationDomain(),
                     'format' => 'dd/MM/y'
