@@ -3,3 +3,7 @@ services:
         class: Tact\DoryBundle\Form\BooleanType
         tags:
             - { name: form.type, alias: boolean }
+    dory.model.mailer:
+        class: Tact\DoryBundle\Models\MailEngine
+        calls:
+            - [ setContainer, [ '@service_container' ] ]
