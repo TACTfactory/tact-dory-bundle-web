@@ -110,7 +110,9 @@ class MailEngine implements ContainerAwareInterface
      *              The params for the twig render (mailer if forbidden as key).
      * @param array $bccs
      * @param array|\Tact\DoryBundle\Models\Base\MailAttachInterface[] $twigAttachs
-     * @param array|string[] $recipientEmails The "to" mail addresses (use key to set your name if you want this).
+     * @param array|string[]
+     *              $recipientEmails The "to" mail addresses
+     *              (use key to set your name if you want this ; see bcc for hidden recipients).
      *
      * @return int The number of successful recipients. Can be 0 which indicates failure.
      *
@@ -212,7 +214,7 @@ class MailEngine implements ContainerAwareInterface
         }
 
         return $this->sendMessage($mailModel->getTransmitter(), $mailModel->getRecipient(), $mailModel->getSubject(),
-                $mailModel->getTwig(), $mailModel->getTwigParameters(), $mailModel->getRecipientEmails());
+                $mailModel->getTwig(), $mailModel->getTwigParameters(), [], [], $mailModel->getRecipientEmails());
     }
 
     /**
