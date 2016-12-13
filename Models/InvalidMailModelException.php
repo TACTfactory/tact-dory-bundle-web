@@ -1,7 +1,7 @@
 <?php
 
 /**************************************************************************
- * InvalidMailModelException.php, TACT Dory
+ * InvalidMailModelException.php, TACT Dory.
  *
  * Mickael Gaillard Copyright 2016
  * Description :
