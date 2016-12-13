@@ -80,6 +80,18 @@ class MailModel
     }
 
     /**
+     * Tests then returns if the current model is valid to send a mail.
+     *
+     * @return boolean
+     */
+    public function isValid()
+    {
+        return ! ($this->getTransmitter() === null
+                || $this->getRecipient()->getEmail() === null
+                || $this->getTwig() === null);
+    }
+
+    /**
      * Get the transmitter.
      *
      * @return string
