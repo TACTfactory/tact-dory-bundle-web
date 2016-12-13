@@ -94,9 +94,9 @@ class MailModel
     /**
      * Get the transmitter.
      *
-     * @return string
+     * @return string|null
      */
-    public function getTransmitter(): string
+    public function getTransmitter()
     {
         return $this->transmitter;
     }
@@ -118,7 +118,7 @@ class MailModel
     /**
      * Get the recipient.
      *
-     * @return \FOS\UserBundle\Model\UserInterface
+     * @return \FOS\UserBundle\Model\UserInterface|null
      */
     public function getRecipient()
     {
@@ -142,7 +142,7 @@ class MailModel
     /**
      * Get the subject.
      *
-     * @return string
+     * @return string|null
      */
     public function getSubject()
     {
@@ -166,7 +166,7 @@ class MailModel
     /**
      * Get the twig.
      *
-     * @return string
+     * @return string|null
      */
     public function getTwig()
     {
