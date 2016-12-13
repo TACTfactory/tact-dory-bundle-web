@@ -77,6 +77,8 @@ class MailModel
      *            The content twig.
      * @param array $twigParameters
      *            The twig parameters.
+     * @param array $recipientEmails
+     *            The message targets (see bcc for hidden recipients).
      */
     public function __construct(string $transmitter = null, UserInterface $recipient = null, string $subject = null,
             string $twig = null, array $twigParameters = [], array $recipientEmails = [])
