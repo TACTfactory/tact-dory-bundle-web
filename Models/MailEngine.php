@@ -110,7 +110,7 @@ class MailEngine implements ContainerAwareInterface
      *              The params for the twig render (mailer if forbidden as key).
      * @param array $bccs
      * @param array|\Tact\DoryBundle\Models\Base\MailAttachInterface[] $twigAttachs
-     * @param array|string[] $targetedEmails The "to" mail addresses (use key to set your name if you want this).
+     * @param array|string[] $recipientEmails The "to" mail addresses (use key to set your name if you want this).
      *
      * @return int The number of successful recipients. Can be 0 which indicates failure.
      *
@@ -118,7 +118,7 @@ class MailEngine implements ContainerAwareInterface
      * @throws \InvalidArgumentException
      */
     public function sendMessage(string $from, UserInterface $user, string $subject, string $twig, $params = array(),
-            array $bccs = [], array $twigAttachs = [], array $targetedEmails = null)
+            array $bccs = [], array $twigAttachs = [], array $recipientEmails = null)
     {
         if ($this->mailer === null) {
             throw new \Exception('Failure of dory.model.mailer service initialization (don\'t have dependencies).');
@@ -131,18 +131,15 @@ class MailEngine implements ContainerAwareInterface
             $this->translator->setLocale($locale);
         }
 
-        // TODO Get local from user for translator (see into Iris) : https://git.tactfactory.com/twim/twim-web/blob/master/src/Twim/ApiBundle/Model/MailEngine.php.
-        // TODO Add piece jointe : https://git.tactfactory.com/iris/iris-web/blob/master/src/Iris/ApiBundle/Models/MailEngine.php.
-
         $message = \Swift_Message::newInstance();
 
         $message->setFrom($from);
         $message->setContentType("text/html");
 
-        if ($targetedEmails === null || count($targetedEmails) === 0) {
+        if ($recipientEmails === null || count($recipientEmails) === 0) {
             $message->setTo($user->getEmail());
         } else {
-            foreach ($targetedEmails as $name => $address) {
+            foreach ($recipientEmails as $name => $address) {
                 if (is_string($name)) {
                     $message->addTo($address, $name);
                 } else {
@@ -156,6 +153,7 @@ class MailEngine implements ContainerAwareInterface
 
         // Process attachements.
         foreach ($twigAttachs as $attach) {
+            // TODO Upgrade attachements.
             $attachmentName = '';
             $attachmentFilename = '';
 
@@ -214,7 +212,7 @@ class MailEngine implements ContainerAwareInterface
         }
 
         return $this->sendMessage($mailModel->getTransmitter(), $mailModel->getRecipient(), $mailModel->getSubject(),
-                $mailModel->getTwig(), $mailModel->getTwigParameters(), $mailModel->getTargetedEmails());
+                $mailModel->getTwig(), $mailModel->getTwigParameters(), $mailModel->getRecipientEmails());
     }
 
     /**

@@ -62,7 +62,7 @@ class MailModel
      *
      * @var array
      */
-    protected $targetedEmails;
+    protected $recipientEmails;
 
     /**
      * Constructor.
@@ -79,14 +79,14 @@ class MailModel
      *            The twig parameters.
      */
     public function __construct(string $transmitter = null, UserInterface $recipient = null, string $subject = null,
-            string $twig = null, array $twigParameters = [], array $targetedEmails = [])
+            string $twig = null, array $twigParameters = [], array $recipientEmails = [])
     {
         $this->transmitter = $transmitter;
         $this->recipient = $recipient;
         $this->subject = $subject;
         $this->twig = $twig;
         $this->twigParameters = $twigParameters;
-        $this->targetedEmails = $targetedEmails;
+        $this->recipientEmails = $recipientEmails;
     }
 
     /**
@@ -222,25 +222,25 @@ class MailModel
     }
 
     /**
-     * Get the targetedEmails.
+     * Get the recipientEmails.
      *
      * @return array
      */
-    public function getTargetedEmails()
+    public function getRecipientEmails()
     {
-        return $this->targetedEmails;
+        return $this->recipientEmails;
     }
 
     /**
-     * Set the targetedEmails.
+     * Set the recipientEmails.
      *
-     * @param array $targetedEmails
+     * @param array $recipientEmails
      *
      * @return MailModel
      */
-    public function setTargetedEmails(array $targetedEmails)
+    public function setRecipientEmails(array $recipientEmails)
     {
-        $this->targetedEmails = $targetedEmails;
+        $this->recipientEmails = $recipientEmails;
 
         return $this;
     }
