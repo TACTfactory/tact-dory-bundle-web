@@ -110,6 +110,7 @@ class MailEngine implements ContainerAwareInterface
      *              The params for the twig render (mailer if forbidden as key).
      * @param array $bccs
      * @param array|\Tact\DoryBundle\Models\Base\MailAttachInterface[] $twigAttachs
+     * @param array|string[] $targetedEmails The "to" mail addresses (use key to set your name if you want this).
      *
      * @return int The number of successful recipients. Can be 0 which indicates failure.
      *
@@ -117,7 +118,7 @@ class MailEngine implements ContainerAwareInterface
      * @throws \InvalidArgumentException
      */
     public function sendMessage(string $from, UserInterface $user, string $subject, string $twig, $params = array(),
-            array $bccs = [], array $twigAttachs = [])
+            array $bccs = [], array $twigAttachs = [], array $targetedEmails = null)
     {
         if ($this->mailer === null) {
             throw new \Exception('Failure of dory.model.mailer service initialization (don\'t have dependencies).');
@@ -136,8 +137,19 @@ class MailEngine implements ContainerAwareInterface
         $message = \Swift_Message::newInstance();
 
         $message->setFrom($from);
-        $message->setTo($user->getEmail());
         $message->setContentType("text/html");
+
+        if ($targetedEmails === null || count($targetedEmails) === 0) {
+            $message->setTo($user->getEmail());
+        } else {
+            foreach ($targetedEmails as $name => $address) {
+                if (is_string($name)) {
+                    $message->addTo($address, $name);
+                } else {
+                    $message->addTo($address);
+                }
+            }
+        }
 
         // Add bbcs.
         $message->setBcc($bccs);
@@ -202,7 +214,7 @@ class MailEngine implements ContainerAwareInterface
         }
 
         return $this->sendMessage($mailModel->getTransmitter(), $mailModel->getRecipient(), $mailModel->getSubject(),
-                $mailModel->getTwig(), $mailModel->getTwigParameters());
+                $mailModel->getTwig(), $mailModel->getTwigParameters(), $mailModel->getTargetedEmails());
     }
 
     /**
