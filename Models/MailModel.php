@@ -56,6 +56,15 @@ class MailModel
     protected $twigParameters;
 
     /**
+     * The addresses where we are going to send a mail.
+     *
+     * Dory use $user->getEmail() if null or empty.
+     *
+     * @var array
+     */
+    protected $recipientEmails;
+
+    /**
      * Constructor.
      *
      * @param string $transmitter
@@ -70,13 +79,14 @@ class MailModel
      *            The twig parameters.
      */
     public function __construct(string $transmitter = null, UserInterface $recipient = null, string $subject = null,
-            string $twig = null, array $twigParameters = [])
+            string $twig = null, array $twigParameters = [], array $recipientEmails = [])
     {
         $this->transmitter = $transmitter;
         $this->recipient = $recipient;
         $this->subject = $subject;
         $this->twig = $twig;
         $this->twigParameters = $twigParameters;
+        $this->recipientEmails = $recipientEmails;
     }
 
     /**
@@ -207,6 +217,30 @@ class MailModel
     public function setTwigParameters(array $twigParameters)
     {
         $this->twigParameters = $twigParameters;
+
+        return $this;
+    }
+
+    /**
+     * Get the recipientEmails.
+     *
+     * @return array
+     */
+    public function getRecipientEmails()
+    {
+        return $this->recipientEmails;
+    }
+
+    /**
+     * Set the recipientEmails.
+     *
+     * @param array $recipientEmails
+     *
+     * @return MailModel
+     */
+    public function setRecipientEmails(array $recipientEmails)
+    {
+        $this->recipientEmails = $recipientEmails;
 
         return $this;
     }
