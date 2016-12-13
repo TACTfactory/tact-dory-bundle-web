@@ -108,11 +108,11 @@ class MailEngine implements ContainerAwareInterface
      * @param string $twig
      * @param array $params
      *              The params for the twig render (mailer if forbidden as key).
+     * @param array|string[] $recipientEmails
+     *              The "to" mail addresses (use key to set your name if necessary ; see bcc for hidden recipients)
      * @param array $bccs
+     *              The hidden recipients.
      * @param array|\Tact\DoryBundle\Models\Base\MailAttachInterface[] $twigAttachs
-     * @param array|string[]
-     *              $recipientEmails The "to" mail addresses
-     *              (use key to set your name if you want this ; see bcc for hidden recipients).
      *
      * @return int The number of successful recipients. Can be 0 which indicates failure.
      *
@@ -120,7 +120,7 @@ class MailEngine implements ContainerAwareInterface
      * @throws \InvalidArgumentException
      */
     public function sendMessage(string $from, UserInterface $user, string $subject, string $twig, $params = array(),
-            array $bccs = [], array $twigAttachs = [], array $recipientEmails = null)
+            array $recipientEmails = null, array $bccs = [], array $twigAttachs = [])
     {
         if ($this->mailer === null) {
             throw new \Exception('Failure of dory.model.mailer service initialization (don\'t have dependencies).');
@@ -213,8 +213,16 @@ class MailEngine implements ContainerAwareInterface
             throw new InvalidMailModelException();
         }
 
-        return $this->sendMessage($mailModel->getTransmitter(), $mailModel->getRecipient(), $mailModel->getSubject(),
-                $mailModel->getTwig(), $mailModel->getTwigParameters(), [], [], $mailModel->getRecipientEmails());
+        $from            = $mailModel->getTransmitter();
+        $user            = $mailModel->getRecipient();
+        $subject         = $mailModel->getSubject();
+        $twig            = $mailModel->getTwig();
+        $params          = $mailModel->getTwigParameters();
+        $recipientEmails = $mailModel->getRecipientEmails();
+        $bccs            = [];
+        $attachments     = [];
+
+        return $this->sendMessage($from, $user, $subject, $twig, $params, $recipientEmails, $bccs, $attachments);
     }
 
     /**
