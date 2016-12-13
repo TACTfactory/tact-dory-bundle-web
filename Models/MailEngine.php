@@ -197,6 +197,10 @@ class MailEngine implements ContainerAwareInterface
      */
     public function sendMessageFromModel(MailModel $mailModel)
     {
+        if ($mailModel->isValid() === false) {
+            throw new InvalidMailModelException();
+        }
+
         return $this->sendMessage($mailModel->getTransmitter(), $mailModel->getRecipient(), $mailModel->getSubject(),
                 $mailModel->getTwig(), $mailModel->getTwigParameters());
     }
