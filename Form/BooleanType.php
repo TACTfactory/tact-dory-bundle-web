@@ -15,6 +15,8 @@ namespace Tact\DoryBundle\Form;
 use Tact\DoryBundle\Form\DataTransformer\BooleanTypeToBooleanTransformer;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\FormView;
+use Symfony\Component\Form\FormInterface;
 
 /**
  * Boolean Type
@@ -30,6 +32,16 @@ class BooleanType extends CheckboxType
 
     const VALUE_STRING_TRUE = "true";
 
+    /**
+     * {@inheritdoc}
+     */
+    public function buildView(FormView $view, FormInterface $form, array $options)
+    {
+        $view->vars = array_replace($view->vars, array(
+            'value' => $options['value'],
+            'checked' => self::VALUE_INT_FALSE != $form->getViewData() // Be carefull, compare string to integer.
+        ));
+    }
 
     /**
      *
