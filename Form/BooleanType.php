@@ -37,7 +37,6 @@ class BooleanType extends CheckboxType
      */
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
-        dump($form->getViewData());
         $view->vars = array_replace($view->vars, array(
             'value' => $options['value'],
             'checked' => self::VALUE_INT_FALSE != $form->getViewData() // Be carefull, compare string to integer.
