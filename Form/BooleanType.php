@@ -13,14 +13,13 @@
 namespace Tact\DoryBundle\Form;
 
 use Tact\DoryBundle\Form\DataTransformer\BooleanTypeToBooleanTransformer;
-use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 
 /**
  * Boolean Type
  */
-class BooleanType extends AbstractType
+class BooleanType extends CheckboxType
 {
 
     const VALUE_INT_FALSE = 0;
@@ -31,6 +30,7 @@ class BooleanType extends AbstractType
 
     const VALUE_STRING_TRUE = "true";
 
+
     /**
      *
      * {@inheritdoc}
@@ -39,18 +39,6 @@ class BooleanType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->addModelTransformer(new BooleanTypeToBooleanTransformer());
-    }
-
-    /**
-     *
-     * {@inheritdoc}
-     *
-     */
-    public function configureOptions(OptionsResolver $resolver)
-    {
-        $resolver->setDefaults(array(
-            'compound' => false
-        ));
     }
 
     /**
