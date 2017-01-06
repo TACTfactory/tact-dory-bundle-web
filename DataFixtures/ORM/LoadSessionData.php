@@ -1,7 +1,7 @@
 <?php
 
 /**************************************************************************
- * LoadNodeData.php, CmDB
+ * LoadSessionData.php, TACT Dory
  *
  * Mickael Gaillard Copyright 2016
  * Description :
@@ -29,7 +29,7 @@ class LoadSessionData extends MainAbstractFixture implements OrderedFixtureInter
      */
     const ERROR_FLAG_DATABASE_ALIAS = 'Impossible to load session with "%s" as sgbd parameter into configuration.';
 
-    const SESSION_SCHEMA_SQLITE = "CREATE TABLE sys_session (
+    const SESSION_SCHEMA_SQLITE = "CREATE TABLE IF NOT EXISTS sys_session (
         session_id varchar(255) NOT NULL,
         session_value BLOB NOT NULL,
         session_time int(11) NOT NULL,
@@ -39,7 +39,8 @@ class LoadSessionData extends MainAbstractFixture implements OrderedFixtureInter
 
     const SESSION_SCHEMA_MYSQL = self::SESSION_SCHEMA_SQLITE . " ENGINE=InnoDB DEFAULT CHARSET=utf8;";
 
-    const SESSION_SCHEMA_POSTGRESQL = "CREATE TABLE sys_session (
+    // IF NOT EXISTS need postgres > 9.5.
+    const SESSION_SCHEMA_POSTGRESQL = "CREATE TABLE IF NOT EXISTS sys_session (
         session_id VARCHAR(128) NOT NULL PRIMARY KEY,
         session_value BYTEA NOT NULL,
         session_time INTEGER NOT NULL,
@@ -59,13 +60,13 @@ class LoadSessionData extends MainAbstractFixture implements OrderedFixtureInter
         } else {
             switch ($sgbd) {
                 case DatabaseTypes::POSTGRES:
-                    $query = self::SESSION_SCHEMA_POSTGRESQL;
+                    $query = static::SESSION_SCHEMA_POSTGRESQL;
                     break;
                 case DatabaseTypes::MYSQL:
-                    $query = self::SESSION_SCHEMA_MYSQL;
+                    $query = static::SESSION_SCHEMA_MYSQL;
                     break;
                 default:
-                    $message = sprintf(self::ERROR_FLAG_DATABASE_ALIAS, $sgbd);
+                    $message = sprintf(static::ERROR_FLAG_DATABASE_ALIAS, $sgbd);
                     throw new InvalidArgumentException($message);
                     break;
             }
