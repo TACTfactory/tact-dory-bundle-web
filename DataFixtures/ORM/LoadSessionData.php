@@ -39,7 +39,7 @@ class LoadSessionData extends MainAbstractFixture implements OrderedFixtureInter
 
     const SESSION_SCHEMA_MYSQL = self::SESSION_SCHEMA_SQLITE . " ENGINE=InnoDB DEFAULT CHARSET=utf8;";
 
-    // IF NOT EXISTS need postgres > 9.5.
+    // IF NOT EXISTS need postgres > 9.2 -- https://www.postgresql.org/docs/9.2/static/sql-createtable.html.
     const SESSION_SCHEMA_POSTGRESQL = "CREATE TABLE IF NOT EXISTS sys_session (
         session_id VARCHAR(128) NOT NULL PRIMARY KEY,
         session_value BYTEA NOT NULL,
