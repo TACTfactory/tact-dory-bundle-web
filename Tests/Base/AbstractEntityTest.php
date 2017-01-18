@@ -80,4 +80,39 @@ abstract class AbstractEntityTest extends AbstractTactTest
         $this->em->flush();
         $this->assertNull($this->repository->findOneById($id));
     }
+
+    // Utils methods.
+
+    /**
+     * Does some tests to check that accessors are good.
+     *
+     * @param string $fieldName
+     *            The name of the field to test.
+     * @param unknown $newValue
+     *            The new value to set for test (assert if same than current).
+     */
+    protected function assertInvalidAccessor(string $fieldName, $newValue) {
+        $setter = sprintf('set%s', ucfirst($fieldName));
+        $getter = sprintf('get%s', ucfirst($fieldName));
+
+        if (method_exists($this->entity, $getter) == false) {
+            $getter = sprintf('is%s', ucfirst($fieldName));
+
+            if (method_exists($this->entity, $getter) == false) {
+                $getter = sprintf('has%s', ucfirst($fieldName));
+
+                if (method_exists($this->entity, $getter) == false) {
+                    $this->assert(sprintf(
+                            'No found method to get "%s" field (neither get nor is nor has).', $fieldName));
+                }
+            }
+        }
+
+        $initialValue = $this->entity->$getter();
+
+        $this->entity->$setter($newValue);
+
+        $this->assertTrue($initialValue !== $this->entity->$getter());
+        $this->assertEquals($newValue, $this->entity->$getter());
+    }
 }
