@@ -14,6 +14,7 @@ namespace Tact\DoryBundle\Tests\Base;
 
 abstract class AbstractEntityTest extends AbstractTactTest
 {
+
     /**
      * Generate then return an entity that
      */
@@ -30,7 +31,6 @@ abstract class AbstractEntityTest extends AbstractTactTest
         parent::setup();
 
         $this->entity = $this->generateEntity();
-        $this->repository = $this->em->getRepository(get_class($this->entity));
 
         static::rebuildDatabase();
     }
