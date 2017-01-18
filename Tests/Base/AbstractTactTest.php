@@ -78,6 +78,7 @@ abstract class AbstractTactTest extends WebTestCase
         // Init Entity Manager
         $this->em = static::$kernel->getContainer()->get('doctrine.orm.entity_manager');
         $this->id = self::DEFAULT_ID;
+        $this->repository = $this->em->getRepository(get_class($this->entity));
     }
 
     /**
