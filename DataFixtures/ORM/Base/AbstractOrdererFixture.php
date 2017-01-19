@@ -42,15 +42,71 @@ abstract class AbstractOrdererFixture extends MainAbstractFixture
      * Generates then returns the minimum fixtures from pure data class.
      *
      * @return IEntityBase[]
+     *
+     * @deprecated
      */
-    abstract protected function generateMinimumFixtures(ObjectManager $manager);
+    protected function generateMinimumFixtures(ObjectManager $manager) {
+        $result = [];
+
+        return $result;
+    }
 
     /**
      * Generates then returns the tests fixtures.
      *
      * @return IEntityBase[]
+     *
+     * @deprecated
      */
-    abstract protected function generateTestFixtures(ObjectManager $manager);
+    protected function generateTestFixtures(ObjectManager $manager) {
+        $result = [];
+
+        return $result;
+    }
+
+    /**
+     * Generates then returns the fixtures to record in all environments.
+     *
+     * @param ObjectManager $manager
+     *
+     * @return IEntityBase[]
+     */
+    protected function prodFixtures(ObjectManager $manager)
+    {
+        // Call to old for retrocompatibility.
+        $result = $this->generateMinimumFixtures($manager);
+
+        return $result;
+    }
+
+    /**
+     * Generates then returns the fixtures to record on prod|dev environments.
+     *
+     * @param ObjectManager $manager
+     *
+     * @return IEntityBase[]
+     */
+    protected function devFixtures(ObjectManager $manager)
+    {
+        // Call to old for retrocompatibility.
+        $result = $this->generateTestFixtures($manager);
+
+        return $result;
+    }
+
+    /**
+     * Generates then returns the fixtures to record only for tests.
+     *
+     * @param ObjectManager $manager
+     *
+     * @return IEntityBase[]
+     */
+    protected function testFixtures(ObjectManager $manager)
+    {
+        $result = [];
+
+        return $result;
+    }
 
     // ***** ***** *****
     // ***** ***** ***** Local overrides.
@@ -64,12 +120,16 @@ abstract class AbstractOrdererFixture extends MainAbstractFixture
      */
     public function load(ObjectManager $manager)
     {
-        $objects = $this->generateMinimumFixtures($manager);
+        $objects = $this->prodFixtures($manager);
 
         $kernel = $this->container->get('kernel');
 
         if ($kernel->getEnvironment() !== 'prod') {
-            $objects = array_merge($objects, $this->generateTestFixtures($manager));
+            $objects = array_merge($objects, $this->devFixtures($manager));
+
+            if ($kernel->getEnvironment() === 'test') {
+                $objects = array_merge($objects, $this->testFixtures($manager));;
+            }
         }
 
         $this->saveAll($manager, $objects);
