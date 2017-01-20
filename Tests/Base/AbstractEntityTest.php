@@ -15,12 +15,12 @@ namespace Tact\DoryBundle\Tests\Base;
 abstract class AbstractEntityTest extends AbstractTactTest
 {
 
-    /**
-     * Generate then return an entity that
-     */
-    abstract protected function generateEntity();
+    // Tests.
 
-    // Configurations methods.
+    /**
+     * Test to update the entity.
+     */
+    public abstract function testUpdate();
 
     /**
      *
@@ -30,17 +30,8 @@ abstract class AbstractEntityTest extends AbstractTactTest
     protected function setUp() {
         parent::setup();
 
-        $this->entity = $this->generateEntity();
-
         static::rebuildDatabase();
     }
-
-    // Tests.
-
-    /**
-     * Test to update the entity.
-     */
-    public abstract function testUpdate();
 
     /**
      * Test to create then add one entity to database.

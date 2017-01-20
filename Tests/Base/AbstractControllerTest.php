@@ -26,6 +26,15 @@ abstract class AbstractControllerTest extends AbstractTactTest
     protected $client = null;
 
     /**
+     * {@inheritdoc}
+     *
+     * Only defined here for retro-compatibilities, thanks to return a real entity if you want have automatic stuffs.
+     */
+    protected function generateEntity() {
+        return null;
+    }
+
+    /**
      *
      * {@inheritdoc}
      *

@@ -66,6 +66,13 @@ abstract class AbstractTactTest extends WebTestCase
     protected static $fixturesPath = '';
 
     /**
+     * Generates then returns an entity which be used for crud tests and to get repository.
+     *
+     * @return An entity class.
+     */
+    abstract protected function generateEntity();
+
+    /**
      *
      * {@inheritdoc}
      *
@@ -75,10 +82,17 @@ abstract class AbstractTactTest extends WebTestCase
 
         self::bootKernel();
 
+        // Generates a simple entity for "crud" test.
+        $this->entity = $this->generateEntity();
+
         // Init Entity Manager
         $this->em = static::$kernel->getContainer()->get('doctrine.orm.entity_manager');
         $this->id = self::DEFAULT_ID;
-        $this->repository = $this->em->getRepository(get_class($this->entity));
+
+        // Get repository if we have generate an entity.
+        if ($this->entity !== null) {
+            $this->repository = $this->em->getRepository(get_class($this->entity));
+        }
     }
 
     /**
