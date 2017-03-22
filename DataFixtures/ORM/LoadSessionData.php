@@ -15,7 +15,6 @@ namespace Tact\DoryBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use Buzz\Exception\InvalidArgumentException;
 use Tact\DoryBundle\DataFixtures\ORM\Base\MainAbstractFixture;
 use Tact\DoryBundle\Enum\DatabaseTypes;
 
@@ -53,7 +52,8 @@ class LoadSessionData extends MainAbstractFixture implements OrderedFixtureInter
      *
      */
     public function load(ObjectManager $manager) {
-        $sgbd = $this->container->getParameter('database_type');
+        $sgbd  = $this->container->getParameter('database_type');
+        $query = null;
 
         if ($this->container->get('kernel')->getEnvironment() === 'test') {
             $query = self::SESSION_SCHEMA_SQLITE;
@@ -66,15 +66,16 @@ class LoadSessionData extends MainAbstractFixture implements OrderedFixtureInter
                     $query = static::SESSION_SCHEMA_MYSQL;
                     break;
                 default:
-                    $message = sprintf(static::ERROR_FLAG_DATABASE_ALIAS, $sgbd);
-                    throw new InvalidArgumentException($message);
+                    // Just print advert message.
+                    echo sprintf(static::ERROR_FLAG_DATABASE_ALIAS, $sgbd);
                     break;
             }
         }
 
-        $manager->getConnection()->exec($query);
-
-        $manager->flush();
+        if ($query) {
+            $manager->getConnection()->exec($query);
+            $manager->flush();
+        }
     }
 
     /**
