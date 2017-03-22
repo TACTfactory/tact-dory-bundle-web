@@ -194,7 +194,7 @@ class ScriptHandlerProcess
     {
         $this->updateConfigImports('config', 'imports.yml');
         $this->updateConfigImports('config_dev', '@TactDoryBundle/Resources/config/config_dev.yml');
-        $this->updateConfigImports('config_test', '@TactDoryBundle/Resources/config/config_test.yml');
+        $this->updateConfigImports('config_test', '@TactDoryBundle/Resources/config/config_test.yml', false);
         $this->updateConfigImports('config_prod', '@TactDoryBundle/Resources/config/config_prod.yml');
         $this->updateAdminTrustOverride(sprintf('%s/security.yml', ScriptHandlerPaths::PROJECT_CONF_PATH));
 
@@ -216,7 +216,7 @@ class ScriptHandlerProcess
      * @param string $filenameWithoutExtension
      * @param string $toImport
      */
-    private function updateConfigImports(string $filenameWithoutExtension, string $toImport)
+    private function updateConfigImports(string $filenameWithoutExtension, string $toImport, bool $ahead = true)
     {
         $importationLine = sprintf(self::FLAG_CONFIG_IMPORT_RESOURCE, $toImport);
         $filepath = sprintf('%s/app/config/%s.yml', ScriptHandlerPaths::PROJECT_ROOT_PATH, $filenameWithoutExtension);
@@ -226,9 +226,17 @@ class ScriptHandlerProcess
         if (preg_match($flag, $content) == false) {
             $sentence = sprintf('%s ## Don\'t modify this import.', $importationLine);
             $newValue = 'imports:' . self::ENDL . self::TAB . $sentence;
+            $matches = [];
 
-            if (preg_match('/\bimports\s*:/', $content)) {
-                $content = str_replace('imports:', $newValue, $content);
+            if (preg_match('/\bimports\s*:(\r?\n\s*-\s*\{.*?\})*/', $content, $matches)) {
+                    $old = 'imports:';
+
+                if ($ahead === false && count($matches) === 2 && trim($matches[1]) != '') {
+                    $old      = $matches[0];
+                    $newValue = $old . self::ENDL . self::TAB . $sentence;
+                }
+
+                $content = str_replace($old, $newValue, $content);
             } else {
                 $content = $newValue . self::ENDL . $content;
             }
