@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+####################################################################################################################
+# TACTfactory Copyright 2015
+# Mickael Gaillard <mickael.gaillard@tactfactory.com>
+# Ver 1.1.0
+# Update Aug 8, 2015
+####################################################################################################################
+-->
+
+<project name="TACT Dory" basedir="." default="build">
+    <property name="dorydir" value="${basedir}/vendor/tactfactory/dory-bundle" />
+    <property name="subbuildfile" value="${dorydir}/build.xml" />
+
+    <import file="${subbuildfile}" optional="true" />
+
+    <target name="-check-composer" unless="composer.exists">
+        <available property="composer.exists" file="composer.phar"/>
+    </target>
+
+    <target name="composer" description="Download Composer" depends="-check-composer" ><!-- if="${composer.exists} != null" -->
+        <exec executable="wget" failonerror="true">
+            <arg value="-r" />
+            <arg value="-nH" />
+            <arg value="http://getcomposer.org/composer.phar" />
+        </exec>
+        <exec executable="chmod" failonerror="true">
+            <arg value="+x" />
+            <arg value="composer.phar" />
+        </exec>
+    </target>
+
+    <target name="vendors-install" depends="composer" description="Add Vendors">
+        <exec executable="./composer.phar" failonerror="true">
+        <arg value="install" />
+        <arg value="--no-interaction" />
+        </exec>
+    </target>
+</project>

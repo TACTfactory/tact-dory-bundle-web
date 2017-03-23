@@ -1,0 +1,3 @@
+## Default parameters from Dory. All its options are overridable.
+fos_rest:
+    disable_csrf_role: IS_AUTHENTICATED_ANONYMOUSLY

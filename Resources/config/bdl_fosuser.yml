@@ -1,0 +1,20 @@
+fos_user:
+    firewall_name: main
+    service:
+        user_manager: sonata.user.orm.user_manager
+    profile:  # Authentication Form
+        form:
+            type:               sonata_user_profile
+            handler:            sonata.user.profile.form.handler.default
+            name:               sonata_user_profile_form
+            validation_groups:  [Authentication]
+    resetting:
+        token_ttl: 86400
+        email:
+            from_email:
+                address:        bot@tactfactory.com
+                sender_name:    "Bot Tact"
+#        form:
+#            type:               sonata_user_resetting
+#            name:               sonata_user_resetting_form
+#            validation_groups:  [ResetPassword, Default]

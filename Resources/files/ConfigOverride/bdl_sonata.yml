@@ -1,0 +1,44 @@
+## Default parameters from Dory. All its options are overridable.
+## See https://sonata-project.org/bundles/admin/master/doc/reference/security.html for more details.
+sonata_user:
+    security_acl: true
+    manager_type: orm # can be orm or mongodb
+    class:
+        user:  Tact\DoryBundle\Entity\User
+        group: Tact\DoryBundle\Entity\Group
+    admin:
+        user:
+          class: Tact\DoryBundle\Admin\Model\UserAdmin
+
+sonata_admin:
+    title: Manager
+    dashboard:
+        blocks:
+            -
+                position: right
+                type: sonata.block.service.text
+                settings:
+                    content: >
+                        <h2>Welcome to the Admin</h2>
+                        <p>This is a manager of Production data.</p> <br />
+            -
+                position: left
+                type: sonata.admin.block.admin_list
+            -
+                position: right
+                type: sonata.block.service.rss
+
+    security:
+        handler: sonata.admin.security.handler.noop # Replace noop by acl or role to activate the sonata rights check.
+        # acl security information
+        information:
+            GUEST:    []
+            STAFF:    [EDIT, LIST, CREATE]
+            EDITOR:   [EXPORT]
+            ADMIN:    [MASTER]
+            OWNER:    [OWNER]
+        # permissions not related to an object instance and also to be available when objects do not exist
+        # the DELETE admin permission means the user is allowed to batch delete objects
+        admin_permissions: [CREATE, LIST, DELETE, UNDELETE, EXPORT, MASTER]
+        # permission related to the objects
+        object_permissions: [VIEW, EDIT, DELETE, UNDELETE, MASTER, OWNER]

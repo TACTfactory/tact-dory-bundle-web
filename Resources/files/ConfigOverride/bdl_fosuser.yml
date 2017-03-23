@@ -1,0 +1,22 @@
+## Default parameters from Dory. All its options are overridable.
+fos_user:
+    db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
+    firewall_name: main
+    user_class: Tact\DoryBundle\Entity\User
+    group:
+        group_class:   Tact\DoryBundle\Entity\Group
+        group_manager: sonata.user.orm.group_manager
+    service:
+        user_manager: sonata.user.orm.user_manager
+    profile:  # Authentication Form
+        form:
+            type:               sonata_user_profile
+            handler:            sonata.user.profile.form.handler.default
+            name:               sonata_user_profile_form
+            validation_groups:  [Authentication]
+    resetting:
+        token_ttl: 86400
+        email:
+            from_email:
+                address:        bot@esoftlink.com
+                sender_name:    "Bot eSoftLink"

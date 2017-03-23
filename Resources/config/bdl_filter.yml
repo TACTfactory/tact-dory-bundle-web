@@ -1,0 +1,7 @@
+lexik_form_filter:
+    listeners:
+        doctrine_orm: true
+        doctrine_dbal: false
+        doctrine_mongodb: false
+    force_case_insensitivity: false
+    where_method: and  # null | and | or
