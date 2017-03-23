@@ -215,6 +215,7 @@ class ScriptHandlerProcess
      *
      * @param string $filenameWithoutExtension
      * @param string $toImport
+     * @param bool $ahead
      */
     private function updateConfigImports(string $filenameWithoutExtension, string $toImport, bool $ahead = true)
     {
