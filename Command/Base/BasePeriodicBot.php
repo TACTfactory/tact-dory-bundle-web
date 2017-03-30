@@ -14,6 +14,7 @@ namespace Tact\DoryBundle\Command\Base;
 
 /**
  * BasePeriodicBot.
+ * @deprecated Will be deleted in one future version.
  */
 abstract class BasePeriodicBot extends AbstractMultipleCommand
 {
