@@ -188,4 +188,14 @@ abstract class AbstractTactTest extends WebTestCase
         parent::tearDown();
         $this->em->close();
     }
+
+    /**
+     * Gets the entity manager.
+     *
+     * @return \Doctrine\ORM\EntityManager
+     */
+    protected function getManager()
+    {
+        return $this->em;
+    }
 }
