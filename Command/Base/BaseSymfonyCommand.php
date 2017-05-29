@@ -14,7 +14,6 @@ namespace Tact\DoryBundle\Command\Base;
 
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Doctrine\Common\Persistence\ObjectManager;
-use Tact\DoryBundle\Utils\ContainerUtils;
 use Doctrine\ORM\EntityManagerInterface;
 
 /**
@@ -25,8 +24,6 @@ use Doctrine\ORM\EntityManagerInterface;
 abstract class BaseSymfonyCommand extends ContainerAwareCommand
 {
 
-    const DORY_COMMAND_PREFIX = 'tact:dory:';
-
     /**
      * Get a symfony service.
      *
@@ -35,7 +32,7 @@ abstract class BaseSymfonyCommand extends ContainerAwareCommand
      * @return mixed The requested service.
      */
     protected function getService($serviceName) {
-        return ContainerUtils::getService($this->getContainer(), $serviceName);
+        return $this->getContainer()->get($serviceName);
     }
 
     /**
@@ -44,7 +41,7 @@ abstract class BaseSymfonyCommand extends ContainerAwareCommand
      * @return ObjectManager|EntityManagerInterface
      */
     protected function getManager() {
-        return ContainerUtils::getManager($this->getContainer());
+        return $this->get('doctrine')->getManager();
     }
 
     /**
@@ -55,6 +52,6 @@ abstract class BaseSymfonyCommand extends ContainerAwareCommand
      * @return \Doctrine\Common\Persistence\ObjectRepository
      */
     protected function getRepository($repositoryName) {
-        return ContainerUtils::getRepository($this->getContainer(), $repositoryName);
+        return $this->getManager()->getRepository($repositoryName);
     }
 }

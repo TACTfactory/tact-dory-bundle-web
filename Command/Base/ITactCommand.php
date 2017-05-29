@@ -19,6 +19,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * ITactCommand.
  *
  * Reprensents a simple command (DP), not a symfony console task.
+ * @deprecated Will be deleted in one future version.
  */
 interface ITactCommand
 {

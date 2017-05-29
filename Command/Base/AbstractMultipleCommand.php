@@ -18,6 +18,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * AbstractMultipleCommand.
+ * @deprecated Will be deleted in one future version.
  */
 abstract class AbstractMultipleCommand extends BaseSymfonyCommand
 {
