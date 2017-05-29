@@ -89,11 +89,11 @@
 		}
 	},
 	"minimum-stability" : "stable",
-	"homepage" : "https://support.tactfactory.com/projects/management-projects-web",
+	"homepage" : "https://support.tactfactory.com/projects/tact-dory-bundle-web",
 	"support" : {
-		"issues" : "https://support.tactfactory.com/projects/management-projects-web/issues",
-		"wiki" : "https://support.tactfactory.com/projects/management-projects-web/wiki",
-		"source" : "http://git.tactfactory.com/management-projects/management-projects-web.git"
+		"issues" : "https://support.tactfactory.com/projects/tact-dory-bundle-web/issues",
+		"wiki" : "https://support.tactfactory.com/projects/tact-dory-bundle-web/wiki",
+		"source" : "http://git.tactfactory.com/tact-dory-bundle/tact-dory-bundle-web.git"
 	},
 	"license" : "proprietary"
 }
