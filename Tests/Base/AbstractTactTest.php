@@ -34,7 +34,7 @@ abstract class AbstractTactTest extends WebTestCase
      *
      * @var \Doctrine\ORM\EntityManager
      */
-    protected $entityManager;
+    protected $em;
 
     /**
      * The entity repository.

@@ -42,6 +42,16 @@ abstract class MainAbstractFixture extends AbstractFixture implements ContainerA
     }
 
     /**
+     * Gets the container.
+     *
+     * @return ContainerInterface
+     */
+    public function getContainer()
+    {
+        return $this->container;
+    }
+
+    /**
      * Gets a container service by its id.
      *
      * @param string $id The service id
