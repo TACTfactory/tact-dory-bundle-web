@@ -52,7 +52,7 @@ class LoadSessionData extends MainAbstractFixture implements OrderedFixtureInter
      *
      */
     public function load(ObjectManager $manager) {
-        $session = $this->getContainer()->getParameter('dory.session');
+        $session = $this->getContainer()->getParameter('tact_dory.session');
 
         // TODO Need to be tested.
         echo 'Read ' . $session . ' as parameter';
