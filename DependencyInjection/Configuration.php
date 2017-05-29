@@ -30,7 +30,12 @@ class Configuration implements ConfigurationInterface
      */
     public function getConfigTreeBuilder() {
         $treeBuilder = new TreeBuilder();
-        $treeBuilder->root('tact_dory');
+        $rootNode = $treeBuilder->root('tact_dory');
+
+        $rootNode
+            ->children()
+            ->scalarNode('session')->defaultValue(true)->end()
+            ->end();
 
         return $treeBuilder;
     }
