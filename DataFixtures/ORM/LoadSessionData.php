@@ -52,29 +52,38 @@ class LoadSessionData extends MainAbstractFixture implements OrderedFixtureInter
      *
      */
     public function load(ObjectManager $manager) {
-        $sgbd  = $this->container->getParameter('database_type');
-        $query = null;
+        $session = $this->getContainer()->getParameter('dory.session');
 
-        if ($this->container->get('kernel')->getEnvironment() === 'test') {
-            $query = self::SESSION_SCHEMA_SQLITE;
-        } else {
-            switch ($sgbd) {
-                case DatabaseTypes::POSTGRES:
-                    $query = static::SESSION_SCHEMA_POSTGRESQL;
-                    break;
-                case DatabaseTypes::MYSQL:
-                    $query = static::SESSION_SCHEMA_MYSQL;
-                    break;
-                default:
-                    // Just print advert message.
-                    echo sprintf(static::ERROR_FLAG_DATABASE_ALIAS, $sgbd);
-                    break;
+        // TODO Need to be tested.
+        echo 'Read ' . $session . ' as parameter';
+
+        if ($session) {
+            $sgbd  = $this->getContainer()->getParameter('database_type');
+            $query = null;
+
+            if ($this->container->get('kernel')->getEnvironment() === 'test') {
+                $query = self::SESSION_SCHEMA_SQLITE;
+            } else {
+                switch ($sgbd) {
+                    case DatabaseTypes::POSTGRES:
+                        $query = static::SESSION_SCHEMA_POSTGRESQL;
+                        break;
+                    case DatabaseTypes::MYSQL:
+                        $query = static::SESSION_SCHEMA_MYSQL;
+                        break;
+                    default:
+                        // Just print advert message.
+                        echo sprintf(static::ERROR_FLAG_DATABASE_ALIAS, $sgbd);
+                        break;
+                }
             }
-        }
 
-        if ($query) {
-            $manager->getConnection()->exec($query);
-            $manager->flush();
+            if ($query) {
+                $manager->getConnection()->exec($query);
+                $manager->flush();
+            }
+        } else {
+            echo 'Desactivated.';
         }
     }
 

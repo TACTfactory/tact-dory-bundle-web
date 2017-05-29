@@ -128,7 +128,7 @@ abstract class AbstractOrdererFixture extends MainAbstractFixture
             $objects = array_merge($objects, $this->devFixtures($manager));
 
             if ($kernel->getEnvironment() === 'test') {
-                $objects = array_merge($objects, $this->testFixtures($manager));;
+                $objects = array_merge($objects, $this->testFixtures($manager));
             }
         }
 

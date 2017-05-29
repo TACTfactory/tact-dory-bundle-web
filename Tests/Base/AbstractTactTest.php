@@ -34,7 +34,7 @@ abstract class AbstractTactTest extends WebTestCase
      *
      * @var \Doctrine\ORM\EntityManager
      */
-    protected $entityManager;
+    protected $em;
 
     /**
      * The entity repository.
@@ -187,5 +187,15 @@ abstract class AbstractTactTest extends WebTestCase
     protected function tearDown() {
         parent::tearDown();
         $this->em->close();
+    }
+
+    /**
+     * Gets the entity manager.
+     *
+     * @return \Doctrine\ORM\EntityManager
+     */
+    protected function getManager()
+    {
+        return $this->em;
     }
 }
