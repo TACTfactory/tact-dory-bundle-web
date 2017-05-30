@@ -82,12 +82,12 @@ abstract class AbstractTactTest extends WebTestCase
 
         self::bootKernel();
 
-        // Generates a simple entity for "crud" test.
-        $this->entity = $this->generateEntity();
-
         // Init Entity Manager
         $this->em = static::$kernel->getContainer()->get('doctrine.orm.entity_manager');
         $this->id = self::DEFAULT_ID;
+
+        // Generates a simple entity for "crud" test.
+        $this->entity = $this->generateEntity();
 
         // Get repository if we have generate an entity.
         if ($this->entity !== null) {
