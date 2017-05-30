@@ -12,6 +12,8 @@
  **************************************************************************/
 namespace Tact\DoryBundle\Tests\Base;
 
+use Symfony\Bundle\FrameworkBundle\Client;
+
 /**
  * AbstractControllerTest.
  */
