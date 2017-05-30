@@ -35,6 +35,26 @@ abstract class AbstractControllerTest extends AbstractTactTest
     }
 
     /**
+     * Generates then returns a logged user.
+     *
+     * @param string $user
+     * @param string $password
+     * @param array $options
+     * @param array $server
+     *
+     * @return Client
+     */
+    protected function generateClient(string $user, string $password, array $options = [], array $server = []): Client
+    {
+        return static::createClient($options,
+                array_merge(
+                        [
+                            'PHP_AUTH_USER' => $user,
+                            'PHP_AUTH_PW' => $password
+                        ], $server));
+    }
+
+    /**
      *
      * {@inheritdoc}
      *
