@@ -1,4 +1,4 @@
 form:
     collection:
-        grouped.remove: Delete selected
-        grouped.remove_advert: Delete will be done on submit
+        grouped.remove: Supprimer maintenant
+        grouped.remove_advert: La suppression ne sera réellement effective qu'après enregistrement de la page

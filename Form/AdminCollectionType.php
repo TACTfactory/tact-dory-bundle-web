@@ -10,7 +10,7 @@
  * Last update : July 04, 2017
  *
  **************************************************************************/
-namespace Tact\DorryBundle\Form;
+namespace Tact\DoryBundle\Form;
 
 use Sonata\CoreBundle\Form\Type\CollectionType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
