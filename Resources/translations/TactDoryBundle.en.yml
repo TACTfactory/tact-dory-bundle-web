@@ -1,0 +1,4 @@
+form:
+    collection:
+        grouped.remove: Supprimer maintenant
+        grouped.remove_advert: La suppression ne sera réellement effective qu'après enregistrement de la page

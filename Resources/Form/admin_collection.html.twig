@@ -1,0 +1,69 @@
+{% extends 'SonataDoctrineORMAdminBundle:Form:form_admin_fields.html.twig' %}
+
+{% block sonata_admin_orm_one_to_many_widget %}
+{% set tableId = form.vars.id %}
+{% set adviceContainer = tableId~'_advice' %}
+
+{% if sonata_admin is defined %}
+    {% set tableId = 'sonata-ba-field-container-'~tableId %}
+{% endif %}
+
+    {{ parent() }}
+
+    {% if btn_grouped_remove is defined and btn_grouped_remove %}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var table = $('#{{- tableId -}}');
+            {#/* Only works for sonata. */#}
+            var addBtn = table.find('.btn-success[title="{{ 'link_add'|trans({}, 'SonataAdminBundle') }}"]');
+
+            var adviceContainer = $('<div>')
+                    .attr('id', '{{ adviceContainer }}')
+                    .addClass('text text-warning text-sm')
+                    .insertBefore(addBtn.parent())
+            ;
+
+            var removeBtn = $('<a>')
+                    .addClass('btn btn-danger btn-sm')
+                    .attr('href', '#remove-now')
+                    .html('<i aria-hidden="true" class="fa fa-minus-circle"></i> {{ 'form.collection.grouped.remove'|trans({}, 'TactDoryBundle') }}')
+                    .click(function (event) {
+                        console.log('Remove rows from {{ form.vars.name -}}!');
+                        var updateLine = false;
+                        {#/* Only works for sonata -- icheck. */#}
+                        table.find('td[class*="_delete"]>div.checkbox .checked').each(function(index, element) {
+                            var line = element.closest('tr');
+
+                            console.log('Remove : ', line);
+
+                            line.remove();
+                            updateLine = true;
+
+                            // Hide table if no line.
+                            if (!table.find('tbody tr').size()) {
+                                if (/^table$/i.exec(table.get(0).tagName)) {
+                                    table.hide();
+                                } else {
+                                    table.find('table').hide();
+                                }
+                            }
+                        });
+
+                        // Print advert message to user.
+                        if (updateLine) {
+                            adviceContainer.html('{{- 'form.collection.grouped.remove_advert'|trans({}, 'TactDoryBundle') -}}');
+                            setTimeout(function () {
+                                adviceContainer.html('');
+                            }, 3000);
+                        }
+
+                        event.preventDefault();
+
+                        return false;
+                    })
+                    .insertBefore(addBtn)
+            ;
+        });
+    </script>
+{% endif %}
+{% endblock %}
