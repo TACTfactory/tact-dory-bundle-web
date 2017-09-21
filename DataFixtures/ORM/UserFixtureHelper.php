@@ -63,9 +63,9 @@ abstract class UserFixtureHelper extends AbstractOrdererFixture
      *
      * {@inheritdoc}
      *
-     * @see \Tact\DoryBundle\DataFixtures\ORM\Base\AbstractOrdererFixture::generateMinimumFixtures()
+     * @see \Tact\DoryBundle\DataFixtures\ORM\Base\AbstractOrdererFixture::prodFixtures()
      */
-    protected function generateMinimumFixtures(ObjectManager $manager) {
+    protected function prodFixtures(ObjectManager $manager) {
         $result = [];
 
         $this->userManager = $this->container->get('fos_user.user_manager');
@@ -86,9 +86,9 @@ abstract class UserFixtureHelper extends AbstractOrdererFixture
      *
      * {@inheritdoc}
      *
-     * @see \Tact\DoryBundle\DataFixtures\ORM\Base\AbstractOrdererFixture::generateTestFixtures()
+     * @see \Tact\DoryBundle\DataFixtures\ORM\Base\AbstractOrdererFixture::devFixtures()
      */
-    protected function generateTestFixtures(ObjectManager $manager) {
+    protected function devFixtures(ObjectManager $manager) {
         $result = [];
 
         for ($i = 4; $i <= 150; $i ++) {
