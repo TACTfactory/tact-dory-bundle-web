@@ -41,7 +41,7 @@ abstract class BaseSymfonyCommand extends ContainerAwareCommand
      * @return ObjectManager|EntityManagerInterface
      */
     protected function getManager() {
-        return $this->get('doctrine')->getManager();
+        return $this->getService('doctrine')->getManager();
     }
 
     /**
