@@ -99,8 +99,8 @@ abstract class UserFixtureHelper extends AbstractOrdererFixture
                     array(
                         User::ROLE_DEFAULT,
                         User::ROLE_API
-                    ), $this->faker->email, $this->faker->dateTimeThisCentury, 'http://www.test.com', User::GENDER_MALE,
-                    $this->faker->locale, $this->faker->timezone, $this->faker->phoneNumber, $i);
+                    ), $this->faker->unique->email, $this->faker->dateTimeThisCentury, 'http://www.test.com',
+                    User::GENDER_MALE, $this->faker->locale, $this->faker->timezone, $this->faker->phoneNumber, $i);
         }
 
         return $result;
