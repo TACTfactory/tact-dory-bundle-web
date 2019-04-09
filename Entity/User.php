@@ -103,7 +103,7 @@ class User extends BaseUser
      * Hook on pre-persist operations
      * @ORM\PrePersist
      */
-    public function prePersist() {
+    public function prePersist(): void {
         parent::prePersist();
 
         // Static
