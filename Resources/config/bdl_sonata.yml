@@ -6,12 +6,12 @@ sonata_user:
     #    user:
     #        class:      TactDory\CoreBundle\Admin\UserAdmin
     #        controller: TactDoryCoreBundle:UserAdmin
-    profile:  # Profile Form (firstname, lastname, etc ...)
-        form:
-            type:               sonata_user_profile
-            handler:            sonata.user.profile.form.handler.default
-            name:               sonata_user_profile_form
-            validation_groups:  [Profile]
+    # profile:  # Profile Form (firstname, lastname, etc ...)
+    #     form:
+    #         type:               sonata_user_profile
+    #         handler:            sonata.user.profile.form.handler.default
+    #         name:               sonata_user_profile_form
+    #         validation_groups:  [Profile]
     admin:
         user:
           class: Tact\DoryBundle\Admin\Model\UserAdmin
