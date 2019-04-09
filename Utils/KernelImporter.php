@@ -75,7 +75,7 @@ abstract class KernelImporter
             new  \Lexik\Bundle\MaintenanceBundle\LexikMaintenanceBundle(),
 
             // File manager section
-            new \Vich\UploaderBundle\VichUploaderBundle(), // File manager
+            // new \Vich\UploaderBundle\VichUploaderBundle(), // File manager
             new \Knp\Bundle\GaufretteBundle\KnpGaufretteBundle(), // Storage backend
             new \Liip\ImagineBundle\LiipImagineBundle(), // Image manipulation
 
@@ -83,7 +83,7 @@ abstract class KernelImporter
             new \Ornicar\GravatarBundle\OrnicarGravatarBundle(), // Gravatar
 
             // Serialization.
-            new \Fresh\VichUploaderSerializationBundle\FreshVichUploaderSerializationBundle(),
+            // new \Fresh\VichUploaderSerializationBundle\FreshVichUploaderSerializationBundle(),
 
             new TactDoryBundle()
         ];
