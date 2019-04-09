@@ -11,7 +11,7 @@ fos_user:
     profile:  # Authentication Form
         form:
             type:               sonata_user_profile
-            handler:            sonata.user.profile.form.handler.default
+            # handler:            sonata.user.profile.form.handler.default
             name:               sonata_user_profile_form
             validation_groups:  [Authentication]
     resetting:
