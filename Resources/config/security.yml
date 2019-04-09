@@ -50,7 +50,7 @@ security:
             context:             user
             form_login:
                 provider:       default_provider
-                csrf_provider:  form.csrf_provider
+                csrf_token_generator: form.csrf_provider # security.csrf.token_manager
             logout:             true
             anonymous:          true
 
