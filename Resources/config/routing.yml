@@ -26,35 +26,44 @@ fos_user_group:
     prefix: /group
 
 # Sonata User
-sonata_user_security:
-    resource: "@SonataUserBundle/Resources/config/routing/sonata_security_1.xml"
-
-sonata_user_resetting:
-    resource: "@SonataUserBundle/Resources/config/routing/sonata_resetting_1.xml"
-    prefix: /resetting
-
-sonata_user_profile:
-    resource: "@SonataUserBundle/Resources/config/routing/sonata_profile_1.xml"
-    prefix: /profile
-
-sonata_user_register:
-    resource: "@SonataUserBundle/Resources/config/routing/sonata_registration_1.xml"
-    prefix: /register
-
-sonata_user_change_password:
-    resource: "@SonataUserBundle/Resources/config/routing/sonata_change_password_1.xml"
-    prefix: /profile
-
-sonata_user:
-    resource: '@SonataUserBundle/Resources/config/routing/admin_security.xml'
+admin_area:
+    resource: '@SonataAdminBundle/Resources/config/routing/sonata_admin.xml'
     prefix: /admin
+
+_sonata_admin:
+    resource: .
+    type: sonata_admin
+    prefix: /admin
+
+# sonata_user_security:
+#     resource: "@SonataUserBundle/Resources/config/routing/sonata_security_1.xml"
+
+# sonata_user_resetting:
+#     resource: "@SonataUserBundle/Resources/config/routing/sonata_resetting_1.xml"
+#     prefix: /resetting
+
+# sonata_user_profile:
+#     resource: "@SonataUserBundle/Resources/config/routing/sonata_profile_1.xml"
+#     prefix: /profile
+
+# sonata_user_register:
+#     resource: "@SonataUserBundle/Resources/config/routing/sonata_registration_1.xml"
+#     prefix: /register
+
+# sonata_user_change_password:
+#     resource: "@SonataUserBundle/Resources/config/routing/sonata_change_password_1.xml"
+#     prefix: /profile
+
+# sonata_user:
+#     resource: '@SonataUserBundle/Resources/config/routing/admin_security.xml'
+#     prefix: /admin
 
 # REST API section
 ################################################################################
 
 # API Auto-doc
-nelmio_api_doc_index:
-    resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
+NelmioApiDocBundle:
+    resource: "@NelmioApiDocBundle/Resources/config/routing/swaggerui.xml"
     prefix:   /api/doc
 
 # Admin section
@@ -69,5 +78,5 @@ _sonata_admin:
     type: sonata_admin
     prefix: /admin
 
-_liip_imagine:
-    resource: "@LiipImagineBundle/Resources/config/routing.xml"
+# _liip_imagine:
+#     resource: "@LiipImagineBundle/Resources/config/routing.xml"

@@ -23,7 +23,8 @@ class UserAdmin extends \Sonata\UserBundle\Admin\Model\UserAdmin
      *
      * @see \Sonata\UserBundle\Admin\Model\UserAdmin::configureFormFields()
      */
-    protected function configureFormFields(FormMapper $formMapper) {
+    protected function configureFormFields(FormMapper $formMapper): void
+    {
         parent::configureFormFields($formMapper);
 
         $now = new \DateTime();
