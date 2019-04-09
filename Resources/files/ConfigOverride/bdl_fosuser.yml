@@ -8,15 +8,15 @@ fos_user:
         group_manager: sonata.user.orm.group_manager
     service:
         user_manager: sonata.user.orm.user_manager
-    profile:  # Authentication Form
-        form:
-            type:               sonata_user_profile
-            # handler:            sonata.user.profile.form.handler.default
-            name:               sonata_user_profile_form
-            validation_groups:  [Authentication]
-    resetting:
-        token_ttl: 86400
-        email:
-            from_email:
-                address:        bot@esoftlink.com
-                sender_name:    "Bot eSoftLink"
+    # profile:  # Authentication Form
+    #     form:
+    #         type:               sonata_user_profile
+    #         # handler:            sonata.user.profile.form.handler.default
+    #         name:               sonata_user_profile_form
+    #         validation_groups:  [Authentication]
+    # resetting:
+    #     token_ttl: 86400
+    #     email:
+    #         from_email:
+    #             address:        bot@tactfactory.com
+    #             sender_name:    "Bot TACTfactory"
