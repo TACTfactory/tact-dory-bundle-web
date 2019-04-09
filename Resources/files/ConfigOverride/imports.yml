@@ -28,10 +28,7 @@ framework:
         handler_id:  ~ # cancel the choice does into dory.
 
 twig:
-    form:
-        resources:
-            - 'SonataCoreBundle:Form:datepicker.html.twig'
-            - 'bootstrap_3_layout.html.twig'
-            - 'bootstrap_3_horizontal_layout.html.twig'
     form_themes:
         - 'SonataCoreBundle:Form:datepicker.html.twig'
+        - 'bootstrap_3_layout.html.twig'
+        - 'bootstrap_3_horizontal_layout.html.twig'
