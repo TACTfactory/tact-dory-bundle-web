@@ -53,7 +53,7 @@ security:
             context:             user
             form_login:
                 provider:       default_provider
-                csrf_token_generator: form.csrf_provider # security.csrf.token_manager
+                csrf_token_generator: security.csrf.token_manager # OLD: form.csrf_provider
             logout:             true
             anonymous:          true
 
