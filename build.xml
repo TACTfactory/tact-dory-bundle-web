@@ -21,7 +21,7 @@
  <target name="build" depends="clean, prepare, vendors-install, lint, setup, phploc-ci, pdepend, phpmd-ci, phpcs-ci, phpcpd-ci, phpunit, phpdox, git-reports" description="Full process."/>
  <target name="build-parallel" depends="prepare,lint,tools-parallel,phpunit,phpdox" description=""/>
  <target name="setup" depends="create-directories-and-acl, sf2-assets" />
- <target name="reset-database" depends="sf2-db-drop, sf2-db-create, sf2-schema-create, sf2-fixtures-load, " />
+ <target name="reset-database" depends="sf2-db-drop, sf2-db-create, sf2-schema-create, sf2-fixtures-load" description="DROP then create database then load fixtures" />
  <target name="setup-prod" depends="setup, clear-cache-prod" />
 
  <target name="tools-parallel" description="Run tools in parallel">
