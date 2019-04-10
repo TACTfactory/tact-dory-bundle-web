@@ -211,7 +211,7 @@
   <!--trycatch>
     <try-->
       <exec executable="php" failonerror="false">
-       <arg value='app/console' />
+       <arg value='bin/console' />
        <arg value="doctrine:database:drop" />
        <arg value='--force' />
       </exec>
@@ -224,7 +224,7 @@
 
  <target name="sf2-db-create" depends="clean" description="Create database">
   <exec executable="php" failonerror="true">
-   <arg value='app/console' />
+   <arg value='bin/console' />
    <arg value="doctrine:database:create" />
    <arg value='-n' />
   </exec>
@@ -232,7 +232,7 @@
 
  <target name="sf2-schema-create" depends="clean" description="Create Schema">
   <exec executable="php" failonerror="true">
-   <arg value='app/console' />
+   <arg value='bin/console' />
    <arg value="doctrine:schema:create" />
    <arg value='-n' />
   </exec>
@@ -240,14 +240,14 @@
 
  <target name="sf2-schema-validate" depends="clean" description="Validate Schema">
   <exec executable="php" failonerror="true">
-   <arg value='app/console' />
+   <arg value='bin/console' />
    <arg value="doctrine:schema:validate" />
   </exec>
  </target>
 
  <target name="sf2-schema-update" depends="clean" description="Update Schema">
   <exec executable="php" failonerror="true">
-   <arg value='app/console' />
+   <arg value='bin/console' />
    <arg value="doctrine:schema:update" />
    <arg value='-n' />
   </exec>
@@ -256,7 +256,7 @@
 <!-- Update fixtures-->
  <target name="sf2-fixtures-load" depends="clean" description="Update fixtures">
   <exec executable="php" failonerror="true">
-   <arg value='app/console' />
+   <arg value='bin/console' />
    <arg value="doctrine:fixtures:load" />
    <arg value='-n' />
   </exec>
@@ -265,7 +265,7 @@
 <!-- Update fixtures-->
  <target name="sf2-assets" depends="clean" description="Update web contents">
   <exec executable="php" failonerror="true">
-   <arg value='app/console' />
+   <arg value='bin/console' />
    <arg value="assets:install" />
    <arg value='web' />
    <arg value='--symlink' />
@@ -276,14 +276,14 @@
 <!-- Clear cache-->
  <target name="clear-cache-prod" depends="clean" description="Clear the prod cache">
   <exec executable="php" failonerror="true">
-   <arg value='app/console' />
+   <arg value='bin/console' />
    <arg value='cache:clear' />
    <arg value='--env=prod' />
   </exec>
  </target>
  <target name="clear-cache-test" depends="clean" description="Clear the prod cache">
   <exec executable="php" failonerror="true">
-   <arg value='app/console' />
+   <arg value='bin/console' />
    <arg value='cache:clear' />
    <arg value='--env=test' />
   </exec>
