@@ -55,6 +55,7 @@ security:
                 provider:       default_provider
                 csrf_token_generator: security.csrf.token_manager # OLD: form.csrf_provider
             logout:             true
+            logout_on_user_change: true
             anonymous:          true
 
         main:
@@ -68,6 +69,7 @@ security:
                 failure_path:   null
                 use_referer:    true
             logout:             true
+            logout_on_user_change: true
             anonymous:          true
             remember_me:
                 secret:   '%secret%'

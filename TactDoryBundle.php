@@ -17,12 +17,12 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
 class TactDoryBundle extends Bundle
 {
 
-    /**
-     * (non-PHPdoc)
-     *
-     * @see \Symfony\Component\HttpKernel\Bundle\Bundle::getParent()
-     */
-    public function getParent() {
-        return 'SonataUserBundle';
-    }
+//     /**
+//      * (non-PHPdoc)
+//      *
+//      * @see \Symfony\Component\HttpKernel\Bundle\Bundle::getParent()
+//      */
+//     public function getParent() {
+//         return 'SonataUserBundle';
+//     }
 }
