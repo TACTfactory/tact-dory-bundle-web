@@ -14,6 +14,7 @@ namespace Tact\DoryBundle\Tests\Base;
 
 use Symfony\Bundle\FrameworkBundle\Client;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
+use Symfony\Component\BrowserKit\Cookie;
 
 /**
  * AbstractControllerTest.
