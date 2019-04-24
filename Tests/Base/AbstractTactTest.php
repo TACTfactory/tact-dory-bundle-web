@@ -116,7 +116,7 @@ abstract class AbstractTactTest extends WebTestCase
     }
 
     /**
-     * Runs 3 console commands: (all with -q and -e=test)
+     * Runs many console commands: (all with -q and -e=test)
      * doctrine:schema:drop --force
      * doctrine:schema:create
      * doctrine:fixtures:load --no-interaction
@@ -125,6 +125,7 @@ abstract class AbstractTactTest extends WebTestCase
      */
     protected function rebuildDatabase() {
         $conn = static::$kernel->getContainer()->get('doctrine.dbal.default_connection');
+        $bundles = self::$kernel->getBundles();
 
         $dbPath = $conn->getDatabase();
         static::$fixturesPath = $dbPath . static::$fixturesSuffix;
@@ -138,9 +139,20 @@ abstract class AbstractTactTest extends WebTestCase
                 '--force' => true
             ));
             static::runConsole('doctrine:schema:create', array());
-            static::runConsole('doctrine:fixtures:load', array(
-                '-n' => true
-            ));
+
+            if (array_key_exists('DoctrineFixturesBundle', $bundles)) {
+                static::runConsole('doctrine:fixtures:load', array(
+                    '-n' => true,
+                    '-e' => 'test'
+                ));
+            }
+
+            if (array_key_exists('NelmioAliceBundle', $bundles)) {
+                static::runConsole('hautelook:fixtures:load', array(
+                    '-n' => true,
+                    '-e' => 'dev'
+                ));
+            }
 
             // copy fresh database to be reused in the future
             copy($dbPath, static::$fixturesPath);
@@ -163,7 +175,7 @@ abstract class AbstractTactTest extends WebTestCase
      * It always run with given environment and in quiet mode (no output on the console)
      */
     protected function runConsole($command, array $options = array()) {
-        $options['-e'] = $this->environment;
+        $options['-e'] = $options['-e'] ?? $this->environment;
         $options['-q'] = null;
 
         $input = new ArrayInput(array_merge($options, array(
