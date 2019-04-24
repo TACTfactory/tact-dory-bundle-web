@@ -13,6 +13,7 @@
 namespace Tact\DoryBundle\Tests\Base;
 
 use Symfony\Bundle\FrameworkBundle\Client;
+use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 
 /**
  * AbstractControllerTest.
@@ -77,18 +78,19 @@ abstract class AbstractControllerTest extends AbstractTactTest
      *     'PHP_AUTH_PW' => 'password'
      * ]);</code>
      * @param Symfony\Bundle\FrameworkBundle\Client $client The created client.
+     * @param string $userMail The mail address of user with we want to be logged.
+     * @param string $userPassword The password of user of interest.
      * @return unknown
      */
-    protected function logIn($client)
+    protected function logIn($client, string $userMail, string $userPassword)
     {
         $session = $client->getContainer()->get('session');
 
         $firewall = 'main';
         $userManager = static::$kernel->getContainer()->get('fos_user.user_manager');
         /** @var \AppBundle\Entity\User $user */
-        //         $user = $userManager->findOneByUsername('admin');
-        $user = $userManager->findUserByEmail('admin@tact-dory.com');
-        $token = new UsernamePasswordToken($user, 'TJ8K257Z9A1lEVA', $firewall, $user->getRoles());
+        $user = $userManager->findUserByEmail($userMail);
+        $token = new UsernamePasswordToken($user, $userPassword, $firewall, $user->getRoles());
         $session->set('_security_' . $firewall, serialize($token));
         $session->save();
 

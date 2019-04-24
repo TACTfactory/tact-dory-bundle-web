@@ -22,6 +22,15 @@ use FOS\UserBundle\Doctrine\UserManager;
 abstract class UserFixtureHelper extends AbstractOrdererFixture
 {
 
+    /** The username of generated admin fixture account. */
+    const ADMIN_USERNAME = 'admin';
+
+    /** The password of generated admin fixture account (should be changed at least in production). */
+    const ADMIN_PASSWD = 'TJ8K257Z9A1lEVA';
+
+    /** The email of generated admin fixture account (should be changed at least in production). */
+    const ADMIN_EMAIL = 'admin@tact-dory.com';
+
     /**
      * User manager service.
      *
@@ -71,12 +80,12 @@ abstract class UserFixtureHelper extends AbstractOrdererFixture
         $this->userManager = $this->container->get('fos_user.user_manager');
 
         // Administrator
-        $result[] = $this->makeUser('admin', true, 'TJ8K257Z9A1lEVA', 'Administrator', '',
+        $result[] = $this->makeUser(static::ADMIN_USERNAME, true, static::ADMIN_PASSWD, 'Administrator', '',
                 array(
                     User::ROLE_DEFAULT,
                     User::ROLE_API,
                     User::ROLE_SUPER_ADMIN
-                ), "admin@tact-dory.com", new \DateTime('2014-01-01'), 'http://www.tactfactory.com', User::GENDER_UNKNOWN,
+                ), static::ADMIN_EMAIL, new \DateTime('2014-01-01'), 'http://www.tactfactory.com', User::GENDER_UNKNOWN,
                 'fr_FR', 'Europe/Paris', '+33100000000', 'user_admin');
 
         return $result;
