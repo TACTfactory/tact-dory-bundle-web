@@ -19,7 +19,7 @@
  <property name="pathToUploadsFiles" value="${basedir}/web/uploads/image"/>
 
  <!-- <target name="build" depends="clean, prepare, vendors-install, lint, setup, phploc-ci, pdepend, phpmd-ci, phpcs-ci, phpcpd-ci, phpunit, phpdox, git-reports" description="Full process."/> -->
- <target name="build" depends="clean, prepare, vendors-install, lint, setup, phploc-ci, pdepend, phpmd-ci, phpcs-ci, phpcpd-ci, phpdox, git-reports" description="Full process."/>
+ <target name="build" depends="clean, prepare, vendors-install, lint, setup, phploc-ci, pdepend, phpmd-ci, phpcs-ci, phpcpd-ci, phpunit-bridge, phpdox, git-reports" description="Full process."/>
  <target name="build-parallel" depends="prepare,lint,tools-parallel,phpunit,phpdox" description=""/>
  <target name="setup" depends="create-directories-and-acl, sf2-assets" />
  <target name="reset-database" depends="sf2-db-drop, sf2-db-create, sf2-schema-create, sf2-fixtures-load" description="DROP then create database then load fixtures" />
@@ -165,6 +165,15 @@
    <arg path="${basedir}/app/phpunit.xml"/>
   </exec>
  </target>
+
+  <target name="phpunit-bridge" depends="prepare, clear-cache-test" description="Run unit tests with PHPUnit Symfony bridge">
+    <exec executable="php" failonerror="true">
+        <env key="SYMFONY_DEPRECATIONS_HELPER" value="disabled"/>
+        <arg value='bin/simple-phpunit' />
+        <arg value="--configuration"/>
+        <arg path="${basedir}/app/phpunit.xml"/>
+    </exec>
+  </target>
 
  <target name="phpdox" depends="phploc-ci,phpcs-ci,phpmd-ci" description="Generate project documentation using phpDox">
   <exec executable="${toolsdir}phpdox" dir="${bindir}">
