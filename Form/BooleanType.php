@@ -17,6 +17,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\Form\FormInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Boolean Type
@@ -43,14 +44,18 @@ class BooleanType extends CheckboxType
         ));
     }
 
+
     /**
-     *
      * {@inheritdoc}
-     *
      */
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function configureOptions(OptionsResolver $resolver)
     {
-        $builder->addModelTransformer(new BooleanTypeToBooleanTransformer());
+        parent::configureOptions($resolver);
+
+        $resolver->setDefault('documentation', [
+            'type' => 'boolean',
+            'default' => false
+        ]);
     }
 
     /**
