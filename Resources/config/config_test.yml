@@ -15,6 +15,11 @@ swiftmailer:
 
 liip_functional_test: ~
 
+security:
+    firewalls:
+        admin:
+            anonymous: true
+
 doctrine:
     dbal:
         driver:   pdo_sqlite
