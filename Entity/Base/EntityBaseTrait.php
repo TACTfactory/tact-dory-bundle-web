@@ -145,28 +145,32 @@ trait EntityBaseTrait
      */
     public function prePersist()
     {
-        $this->createdAt = $this->prePersistOneDate($this->createdAt);
-        $this->updatedAt = $this->prePersistOneDate($this->updatedAt);
-        $this->sync_uDate = $this->prePersistOneDate($this->sync_uDate);
+        $now = new \DateTime();
 
-        $this->sync_dTag = false;
+        $this->createdAt  = $this->prePersistOneDate($this->createdAt,  $now);
+        $this->updatedAt  = $this->prePersistOneDate($this->updatedAt,  $now);
+        $this->sync_uDate = $this->prePersistOneDate($this->sync_uDate, $now);
+
+        $this->sync_dTag  = $this->sync_dTag ?? false;
     }
 
     /**
      * Conserve the known date if exists or create new one with the current date.
      *
+     * @param \DateTime $field
+     *            The field to update.
      * @param \DateTime $date
-     *            The date to update.
+     *            The default value for date field.
      *
      * @return \DateTime
      */
-    private function prePersistOneDate($date)
+    private function prePersistOneDate($field, $date)
     {
-        if ($date === null) {
-            $date = new \DateTime();
+        if ($field === null) {
+            $field = $date;
         }
 
-        return $date;
+        return $field;
     }
 
     /**

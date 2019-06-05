@@ -1,3 +1,11 @@
 ## Default parameters from Dory. All its options are overridable.
 nelmio_api_doc:
-    name: "Application Programming Interface"
+    documentation:
+        info:
+            title: App API
+            version: 0.1.0
+            prefix: /api/v1
+#            description: 
+    areas:
+        path_patterns: # an array of regexps
+            - ^/api(?!/doc$)

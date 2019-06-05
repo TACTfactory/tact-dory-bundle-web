@@ -2,7 +2,7 @@
 fos_user:
     from_email:
         address:      '%mailer_user%'
-        sender_name:  '%mailer_user%'
+        sender_name:  'BOT'
     db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
     firewall_name: main
     user_class: Tact\DoryBundle\Entity\User
