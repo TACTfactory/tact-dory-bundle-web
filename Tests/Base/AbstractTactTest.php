@@ -124,6 +124,7 @@ abstract class AbstractTactTest extends WebTestCase
      * After successful database rebuild, it will copy it for further reuse
      */
     protected function rebuildDatabase() {
+        $fixturesInitialized = false;
         $conn = static::$kernel->getContainer()->get('doctrine.dbal.default_connection');
         $bundles = self::$kernel->getBundles();
 
@@ -142,17 +143,23 @@ abstract class AbstractTactTest extends WebTestCase
 
             if (array_key_exists('DoctrineFixturesBundle', $bundles)) {
                 static::runConsole('doctrine:fixtures:load', array(
+                    '-q' => true,
                     '-n' => true,
-                    '-e' => 'test'
+                    '-e' => 'test',
+                    '--append' => $fixturesInitialized
                 ));
+
+                $fixturesInitialized = true;
             }
 
             if (array_key_exists('NelmioAliceBundle', $bundles)) {
                 static::runConsole('hautelook:fixtures:load', array(
                     '-n' => true,
                     '-e' => 'dev',
-                    '--append' => true
+                    '--append' => $fixturesInitialized
                 ));
+
+                $fixturesInitialized = true;
             }
 
             // copy fresh database to be reused in the future
