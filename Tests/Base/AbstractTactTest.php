@@ -155,7 +155,7 @@ abstract class AbstractTactTest extends WebTestCase
             if (array_key_exists('NelmioAliceBundle', $bundles)) {
                 static::runConsole('hautelook:fixtures:load', array(
                     '-n' => true,
-                    '-e' => 'dev',
+                    '-e' => 'test',
                     '--append' => $fixturesInitialized
                 ));
 
