@@ -63,10 +63,6 @@ abstract class KernelImporter
             new \Knp\Bundle\MenuBundle\KnpMenuBundle(),
             new \Cocur\Slugify\Bridge\Symfony\CocurSlugifyBundle(),
 
-            // Database section
-            new \Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
-            new \Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
-
             // Datagrid section
             new \Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
             new \Lexik\Bundle\FormFilterBundle\LexikFormFilterBundle(),
@@ -99,9 +95,21 @@ abstract class KernelImporter
                         // new \CoreSphere\ConsoleBundle\CoreSphereConsoleBundle(),
                         new \Liip\FunctionalTestBundle\LiipFunctionalTestBundle()
                     ]);
+
+            // Database section
+            self::addOptionalBundle($bundles, '\Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle');
+            self::addOptionalBundle($bundles, '\Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle');
         }
 
         return $bundles;
+    }
+
+    /** Adds if necessary the bundle to list. */
+    private static function addOptionalBundle(array &$bundles, string $bundleName): void
+    {
+        if (class_exists($bundleName)) {
+            $bundles []= new $bundleName();
+        }
     }
 
     /**
