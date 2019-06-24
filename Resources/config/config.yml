@@ -1,17 +1,6 @@
 imports:
     - { resource: security.yml }
     - { resource: services.yml }
-    - { resource: bdl_fosuser.yml }
-    - { resource: bdl_session.yml }
-    - { resource: bdl_fosrest.yml }
-    - { resource: bdl_migrate.yml }
-    - { resource: bdl_sonata.yml }
-    - { resource: bdl_nelmioapi.yml }
-    - { resource: bdl_paginator.yml }
-    - { resource: bdl_filter.yml }
-    - { resource: bdl_intl.yml }
-    - { resource: bdl_gravatar.yml }
-    - { resource: bdl_files.yml }
     - { resource: bdl_maintenance.yml }
 
 # Put parameters here that don't need to change on each machine where the app is deployed
